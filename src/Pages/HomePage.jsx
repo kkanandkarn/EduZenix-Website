@@ -5,6 +5,7 @@ import InsPartner from "../Components/sections/Institution/InsPartner";
 import InsFeature from "../Components/sections/Institution/InsFeature";
 import InsAdvantage from "../Components/sections/Institution/InsAdvantage";
 import InsPlan from "../Components/sections/Institution/InsPlan";
+import InsTestimonials from "../Components/sections/Institution/InsTestimonials";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <InsFeature />
       <InsAdvantage />
       <InsPlan />
+      <InsTestimonials />
     </div>
   );
 };

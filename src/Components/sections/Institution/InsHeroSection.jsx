@@ -23,7 +23,7 @@ const InsHeroSection = () => {
             Ready to Transform Your Campus?
           </h1>
           <p className="text-zinc-400 py-2 font-poppins text-sm lg:text-base">
-            Join the growing number of institutions leveraging Eduease to build
+            Join the growing number of institutions leveraging EduZenix to build
             a smarter, more connected campus.
           </p>
           <div className="pt-4 pb-2 flex justify-center xl:justify-start items-center">

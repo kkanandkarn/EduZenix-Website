@@ -16,7 +16,6 @@ const NavBar = () => {
   useEffect(() => {
     setActiveTab(currentPath === "/" ? "institution" : "student");
   }, [currentPath]);
-  console.log("SCREEM TYP0E: ", screenType);
 
   return (
     <div className="bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 w-full z-50">
@@ -41,7 +40,7 @@ const NavBar = () => {
               className={`${
                 activeTab === "student" ? "bg-[#0F1729]" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer`}
-              onClick={() => navigate("/student")}
+              // onClick={() => navigate("/student")}
             >
               <TbUsers /> For Students
             </button>
@@ -65,7 +64,7 @@ const NavBar = () => {
               className={`${
                 activeTab === "student" ? "bg-[#0F1729]" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer text-sm`}
-              onClick={() => navigate("/student")}
+              // onClick={() => navigate("/student")}
             >
               <TbUsers /> For Students
             </button>

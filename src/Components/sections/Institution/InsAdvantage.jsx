@@ -26,7 +26,7 @@ const InsAdvantage = () => {
     <div className="bg-secondry  pt-20 pb-10 md:pb-20 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4 px-4">
         <div className="flex items-center justify-center text-white font-poppins text-2xl/8 md:text-4xl md:leading-[-1] line lg:text-4xl font-bold text-center">
-          Unlock The Eduease Advantage
+          Unlock The EduZenix Advantage
         </div>
         <div className="text-zinc-500 text-sm  md:text-xl lg:w-full flex items-center justify-center text-center font-poppins py-1">
           Experience the core benefits that set our platform apart from the
@@ -34,8 +34,11 @@ const InsAdvantage = () => {
         </div>
       </div>
       <div className="w-full mt-4 lg:mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center justify-items-center">
-        {advantageCards.map((card, index) => (
-          <div className=" gap-4 flex flex-col items-center justify-center px-4 py-8">
+        {advantageCards?.map((card, index) => (
+          <div
+            className=" gap-4 flex flex-col items-center justify-center px-4 py-8"
+            key={index}
+          >
             <div className="flex items-center justify-center text-4xl text-center p-4 rounded-full bg-sky-900 text-sky-500">
               {card.icon}
             </div>

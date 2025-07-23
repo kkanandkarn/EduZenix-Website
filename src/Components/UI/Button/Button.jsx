@@ -7,11 +7,12 @@ const Button = ({
   label,
   iconPrfix,
   iconSuffix,
+  additionalClass,
 }) => {
   const screenType = useScreenType();
   const baseClasses = ` font-medium px-6 py-3 rounded-lg flex items-center justify-center gap-2 cursor-pointer font-poppins ${
     screenType === "desktop" || screenType === "tablet" ? "text-sm" : "text-xs"
-  }`;
+  } ${additionalClass ? additionalClass : ""} `;
   const variantClasses =
     variant === "primary"
       ? "bg-sky-500 hover:bg-sky-600 text-slate-900 ease-in-out duration-300"

@@ -68,7 +68,10 @@ const InsFeature = () => {
       </div>
       <div className="w-full  mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-center justify-items-center">
         {featureCards.map((card, index) => (
-          <div className="bg-secondry rounded-lg gap-4 flex flex-col items-center justify-center px-4 py-8 border border-sky-300/30 transition-all duration-300 hover:shadow-md hover:shadow-sky-400/50 hover:-translate-y-2">
+          <div
+            className="bg-secondry rounded-lg gap-4 flex flex-col items-center justify-center px-4 py-8 border border-sky-300/30 transition-all duration-300 hover:shadow-md hover:shadow-sky-400/50 hover:-translate-y-2"
+            key={index}
+          >
             <div className="flex items-center justify-center text-4xl text-center p-4 rounded-full bg-sky-900 text-sky-500">
               {card.icon}
             </div>
