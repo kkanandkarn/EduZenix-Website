@@ -90,3 +90,32 @@ export const testimonials = [
     image: Testimonial2,
   },
 ];
+
+export const faqs = [
+  {
+    question: "What is EduZenix?",
+    answer:
+      "EduZenix  is a comprehensive cloud-based ERP platform designed to streamline and automate all aspects of an educational institution's operations, from admissions and academics to finance and hostel management.",
+  },
+  {
+    question: "What does the implementation and onboarding process look like?",
+    answer:
+      "Our dedicated onboarding team works closely with your institution to ensure a smooth transition. The process includes data migration, system configuration to your specific needs, and comprehensive training for your staff to get you up and running efficiently.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "Absolutely. We prioritize data security with state-of-the-art encryption, regular security audits, and robust cloud infrastructure. Your institution's and student's data is always protected.",
+  },
+  {
+    question:
+      "Can EduZenix be customized for our institution's specific needs?",
+    answer:
+      "Yes. EduZenix is highly scalable and customizable. We work with you to adapt the platform to your unique processes and requirements, ensuring a perfect fit for your institution.",
+  },
+  {
+    question: "What kind of support do you offer?",
+    answer:
+      "We offer comprehensive support including onboarding, training, and ongoing technical assistance. Our Gwowth and Enterprise plans include priority support and dedicated account managers to ensure you get the most out of our platform.",
+  },
+];

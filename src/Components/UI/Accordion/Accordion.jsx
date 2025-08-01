@@ -1,87 +1,54 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const AccordionItem = ({ title, content, isOpen, onClick }) => {
-  return (
-    <div className="accordion-item" style={{ marginBottom: 10 }}>
-      <button
-        onClick={onClick}
-        style={{
-          width: "100%",
-          textAlign: "left",
-          padding: "10px 20px",
-          fontSize: 16,
-          cursor: "pointer",
-          backgroundColor: "#eee",
-          border: "none",
-          outline: "none",
-        }}
-      >
-        {title}
-      </button>
-      {isOpen && (
-        <div
-          className="accordion-content"
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "white",
-            border: "1px solid #ccc",
-            borderTop: "none",
-          }}
-        >
-          {content}
-        </div>
-      )}
-    </div>
-  );
-};
+export default function Accordion({ data }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const contentRefs = useRef([]);
 
-const Accordion = ({ items }) => {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const handleClick = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggle = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
+  useEffect(() => {
+    // Trigger layout recalculation for height animation
+    if (activeIndex !== null && contentRefs.current[activeIndex]) {
+      contentRefs.current[activeIndex].style.maxHeight =
+        contentRefs.current[activeIndex].scrollHeight + "px";
+    }
+    // Collapse all others
+    contentRefs.current.forEach((el, idx) => {
+      if (el && idx !== activeIndex) {
+        el.style.maxHeight = "0px";
+      }
+    });
+  }, [activeIndex]);
+
   return (
-    <div className="accordion">
-      {items.map((item, index) => (
-        <AccordionItem
-          key={index}
-          title={item.title}
-          content={item.content}
-          isOpen={openIndex === index}
-          onClick={() => handleClick(index)}
-        />
+    <div className="w-full p-6 text-white bg-primary rounded-lg">
+      {data.map((d, index) => (
+        <div key={index} className="border-b border-gray-700 py-4 px-4">
+          <button
+            className="w-full font-poppins text-left text-sm md:text-lg font-semibold focus:outline-none flex justify-between items-center cursor-pointer"
+            onClick={() => toggle(index)}
+          >
+            {d.question}
+            <span className="ml-4 text-gray-400">
+              {activeIndex === index ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </span>
+          </button>
+          <div
+            ref={(el) => (contentRefs.current[index] = el)}
+            className="overflow-hidden transition-all duration-300 ease-in-out text-gray-300"
+            style={
+              {
+                // maxHeight: activeIndex === index ? "1000px" : "0px",
+              }
+            }
+          >
+            <p className="mt-3 text-sm md:text-base font-poppins">{d.answer}</p>
+          </div>
+        </div>
       ))}
     </div>
   );
-};
-
-// Usage Example
-const App = () => {
-  const accordionData = [
-    {
-      title: "What is React?",
-      content: "React is a JavaScript library for building user interfaces.",
-    },
-    {
-      title: "Why use React?",
-      content:
-        "React allows for fast, scalable, and simple development of complex user interfaces.",
-    },
-    {
-      title: "How do you use React?",
-      content:
-        "You use React by creating components. Components can be functional or class-based.",
-    },
-  ];
-
-  return (
-    <div style={{ maxWidth: 600, margin: "40px auto" }}>
-      <h2>React Accordion Example</h2>
-      <Accordion items={accordionData} />
-    </div>
-  );
-};
-
-export default App;
+}

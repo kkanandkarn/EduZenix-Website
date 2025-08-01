@@ -1,8 +1,5 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import Testimonial1 from "../../../assets/Testimonial1.png";
-import Testimonial2 from "../../../assets/Testimonial2.png";
-import Testimonial3 from "../../../assets/Testimonial3.png";
 import { testimonials } from "../../../utils/constant";
 
 const InsTestimonials = () => {

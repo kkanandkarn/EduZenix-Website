@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../UI/Button/Button";
 import { FaArrowRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setModelOpen } from "../../../store/modelSlice";
 
 const InsHeroSection = () => {
+  const dispatch = useDispatch();
+  const handleDemoModel = () => {
+    dispatch(setModelOpen({ modelName: "demo" }));
+  };
+
   return (
     <div className="bg-primary  pt-40 pb-10 md:pb-20 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4 px-4">
@@ -17,7 +24,7 @@ const InsHeroSection = () => {
       </div>
 
       {/* Cards */}
-      <div className="flex flex-col xl:flex-row items-center justify-center pt-10 gap-10 w-full px-4 lg:px-0 xl:w-2/3">
+      <div className="flex flex-col lg:flex-row items-center justify-center pt-10 gap-10 w-full px-4 lg:px-10 xl:px-0 xl:w-2/3">
         <div className="border p-6 rounded-lg text-center xl:text-start border-sky-300/30 w-full md:w-3/5  transition-shadow duration-300 hover:shadow-md hover:shadow-sky-400/40">
           <h1 className="text-white font-bold font-poppins text-base lg:text-xl">
             Ready to Transform Your Campus?
@@ -30,6 +37,7 @@ const InsHeroSection = () => {
             <Button
               label={"Schedule a Free Demo"}
               iconSuffix={<FaArrowRight />}
+              onClick={handleDemoModel}
             />
           </div>
         </div>

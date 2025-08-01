@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LuBuilding } from "react-icons/lu";
 import { TbUsers } from "react-icons/tb";
 import useScreenType from "../../hooks/UseScreenType";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const location = useLocation();
@@ -12,17 +13,27 @@ const NavBar = () => {
   const screenType = useScreenType();
   const currentPath = location.pathname;
   const [activeTab, setActiveTab] = useState("institution");
+  const modelName = useSelector((state) => state.model.model);
 
   useEffect(() => {
     setActiveTab(currentPath === "/" ? "institution" : "student");
   }, [currentPath]);
 
   return (
-    <div className="bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 w-full z-50">
+    <div
+      className={`bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 xl:right-2 w-full ${
+        modelName === "" ? "z-50" : ""
+      }`}
+    >
+      {/* <div
+      className={`bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 w-full ${
+        modelName === "" ? "z-50" : ""
+      }`}
+    > */}
       <div className="flex justify-between items-center px-8 py-4 ">
         <div className="flex items-center justify-start gap-4">
           <img src={logo} alt="logo" className="w-8 h-8" />
-          <h1 className="font-bold text-xl flex justify-center items-center font-headline text-white">
+          <h1 className="font-bold font-poppins text-xl flex justify-center items-center text-white">
             EduZenix
           </h1>
         </div>
