@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LuCheck } from "react-icons/lu";
 import Button from "../../UI/Button/Button";
 import { FaArrowRight } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { packages } from "../../../utils/constant";
 const InsPlan = () => {
   const [active, setActive] = useState("");
   const screenType = useScreenType();
+  const [packageType, setPackageType] = useState("monthly");
 
   return (
     <div className="bg-primary  pt-20 pb-10 md:pb-20 flex flex-col items-center justify-center px-6">
@@ -21,7 +22,25 @@ const InsPlan = () => {
           plans are available Monthly, Quarterly, or Yearly.
         </div>
       </div>
-      <div className="w-full  mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-items-center">
+      <div className=" my-12 flex items-center justify-between px-2 py-1 gap-2 bg-secondry text-white rounded-full font-poppins">
+        <button
+          className={`${
+            packageType === "monthly" ? "bg-primary" : "bg-secondry"
+          } px-8 py-2 flex items-center justify-center gap-2 rounded-full hover:bg-primary cursor-pointer ease-in-out duration-300`}
+          onClick={() => setPackageType("monthly")}
+        >
+          Monthly
+        </button>
+        <button
+          className={`${
+            packageType === "yearly" ? "bg-primary" : "bg-secondry"
+          } px-8 py-2 flex items-center justify-center rounded-full hover:bg-primary cursor-pointer ease-in-out duration-300`}
+          onClick={() => setPackageType("yearly")}
+        >
+          Yearly
+        </button>
+      </div>
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-items-center">
         {packages.map((card, index) => (
           <div
             className="bg-secondry rounded-lg gap-2 flex flex-col items-start justify-center  border border-gray-600 hover:border-sky-300 transition-all duration-300  hover:shadow-md hover:shadow-sky-400 hover:relative"
@@ -37,18 +56,30 @@ const InsPlan = () => {
               </div>
             )}
             <div className="p-4 w-full">
-              <div className="py-4 text-white font-poppins text-sm text-left font-bold">
+              <div className="py-2 text-white font-poppins text-sm xl:text-xl text-left font-bold">
                 {card.packageName}
               </div>
-              <div className="text-white font-poppins text-sm text-left">
-                {card.packagePrice}
+              <div className="flex items-center justify-start gap-2 text-white font-poppins  text-sm xl:text-lg text-left ">
+                <p className="font-bold">
+                  {packageType === "monthly"
+                    ? card.monthlyPackagePrice
+                    : card.yearlyDiscountedPrice}
+                </p>{" "}
+                {packageType === "yearly" && (
+                  <div className="flex items-center justify-start gap-2  text-gray-300">
+                    <p className="line-through italic text-xs xl:text-sm">
+                      {card.yearlyPackagePrice}
+                    </p>
+                    <p className="text-xs xl:text-xs">{card.saving}</p>
+                  </div>
+                )}
               </div>
               <div className="font-poppins text-gray-500 text-sm text-left">
                 {card.userType}
               </div>
               <div className="mt-4 flex items-center justify-start w-full">
                 <Button
-                  label={"Contact Sales"}
+                  label={"Purchase Now"}
                   variant={`${
                     screenType === "mobile" || screenType === "tablet"
                       ? "primary"

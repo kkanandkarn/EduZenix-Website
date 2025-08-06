@@ -41,16 +41,16 @@ const NavBar = () => {
           <div className="flex items-center justify-between px-2 py-1 gap-2 bg-secondry text-white rounded-full font-poppins">
             <button
               className={`${
-                activeTab === "institution" ? "bg-[#0F1729]" : "bg-secondry"
-              } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer`}
+                activeTab === "institution" ? "bg-primary" : "bg-secondry"
+              } px-4 py-1 flex items-center justify-center gap-2 rounded-full hover:bg-primary cursor-pointer ease-in-out duration-300`}
               onClick={() => navigate("/")}
             >
               <LuBuilding /> For Insitutions
             </button>
             <button
               className={`${
-                activeTab === "student" ? "bg-[#0F1729]" : "bg-secondry"
-              } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer`}
+                activeTab === "student" ? "bg-primary" : "bg-secondry"
+              } px-4 py-1 flex items-center justify-center gap-2 rounded-full hover:bg-primary cursor-pointer`}
               // onClick={() => navigate("/student")}
             >
               <TbUsers /> For Students
@@ -65,7 +65,7 @@ const NavBar = () => {
           <div className="flex items-center justify-between px-2 py-1 gap-2 bg-secondry text-white rounded-full font-poppins">
             <button
               className={`${
-                activeTab === "institution" ? "bg-[#0F1729]" : "bg-secondry"
+                activeTab === "institution" ? "bg-primary" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer text-sm`}
               onClick={() => navigate("/")}
             >
@@ -73,7 +73,7 @@ const NavBar = () => {
             </button>
             <button
               className={`${
-                activeTab === "student" ? "bg-[#0F1729]" : "bg-secondry"
+                activeTab === "student" ? "bg-primary" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer text-sm`}
               // onClick={() => navigate("/student")}
             >

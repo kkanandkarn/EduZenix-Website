@@ -21,7 +21,11 @@ const features = [
 export const packages = [
   {
     packageName: "Startup",
-    packagePrice: "Pay-as-you-go",
+    packagePrice: "₹ 3999",
+    monthlyPackagePrice: "₹ 10,000",
+    yearlyDiscountedPrice: "₹ 1,00,000",
+    yearlyPackagePrice: "₹ 1,20,000",
+    saving: "(2 months off)",
     description: "For small teams just getting started.",
     userType: "For small teams just getting started.",
     features: features,
@@ -30,7 +34,11 @@ export const packages = [
   },
   {
     packageName: "Growth",
-    packagePrice: "Pay-as-you-go",
+    packagePrice: "₹ 6999",
+    monthlyPackagePrice: "₹ 25,000",
+    yearlyDiscountedPrice: "₹ 2,25,000",
+    yearlyPackagePrice: "₹ 3,00,000",
+    saving: "(3 months off)",
     description: "For small teams just getting started.",
     userType: "For growing institutions that need more flexibility.",
     features: [
@@ -44,7 +52,10 @@ export const packages = [
   },
   {
     packageName: "Enterprise",
-    packagePrice: "Pay-as-you-go",
+    monthlyPackagePrice: "₹ 50,000",
+    yearlyDiscountedPrice: "₹ 4,00,000",
+    yearlyPackagePrice: "₹ 6,00,000",
+    saving: "(4 months off)",
     description: "For small teams just getting started.",
     userType: "For large campuses or groups with custom needs.",
     features: [
@@ -64,6 +75,7 @@ export const packages = [
       "Dedicated email, contact, and priority support with 24/7 response availability and guaranteed resolution SLAs",
   },
 ];
+
 export const testimonials = [
   {
     name: "Dr. Anita Verma",
