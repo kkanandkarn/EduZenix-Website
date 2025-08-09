@@ -10,22 +10,6 @@
   --color-buttonSecondry: #1B2638
 }
 
-
-/* scrollbar.css 
-::-webkit-scrollbar {
-  width: 6px;
+body {
+  overflow: hidden;
 }
-
-::-webkit-scrollbar-track {
-  background: #6b7280;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #0ea5e9;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #0284c7;
-}
-*/

@@ -5,7 +5,7 @@ import { LuFacebook, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <div className="bg-secondry border-t border-t-zinc-700 px-6 py-2">
+    <div className="bg-secondry border-t border-t-zinc-700 px-6">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0 lg:justify-between border-b-2 border-b-gray-700 py-6">
         <div className="flex items-center justify-start gap-4">
           <img src={logo} alt="logo" className="w-8 h-8" />
@@ -42,8 +42,8 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      <div className="w-full font-poppins flex items-center justify-center text-gray-300 text-sm py-6">
-        &copy; {year} EduZenix. All rights reserved.
+      <div className="w-full font-poppins flex items-center justify-center text-gray-300 text-sm py-4">
+        <p>&copy; {year} EduZenix. All rights reserved.</p>
       </div>
     </div>
   );

@@ -7,13 +7,25 @@ import { TbUsers } from "react-icons/tb";
 import useScreenType from "../../hooks/UseScreenType";
 import { useSelector } from "react-redux";
 
-const NavBar = () => {
+const NavBar = ({ scrollContainerRef }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const screenType = useScreenType();
   const currentPath = location.pathname;
   const [activeTab, setActiveTab] = useState("institution");
-  const modelName = useSelector((state) => state.model.model);
+  const modalName = useSelector((state) => state.modal.modalName);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      setIsScrolled(container.scrollTop > 50);
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [scrollContainerRef]);
 
   useEffect(() => {
     setActiveTab(currentPath === "/" ? "institution" : "student");
@@ -21,13 +33,17 @@ const NavBar = () => {
 
   return (
     <div
-      className={`bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 xl:right-2 w-full ${
-        modelName === "" ? "z-50" : ""
+      className={`flex flex-col justify-center fixed top-0 xl:right-2 w-full transition-colors duration-300 ${
+        modalName === "" ? "z-50" : ""
+      } ${
+        isScrolled
+          ? "bg-primary border-b border-zinc-800 shadow-lg"
+          : "bg-transparent"
       }`}
     >
       {/* <div
       className={`bg-primary flex flex-col justify-center border-b border-zinc-800 shadow-lg fixed top-0 w-full ${
-        modelName === "" ? "z-50" : ""
+        modalName === "" ? "z-50" : ""
       }`}
     > */}
       <div className="flex justify-between items-center px-8 py-4 ">

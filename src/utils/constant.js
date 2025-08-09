@@ -131,3 +131,8 @@ export const faqs = [
       "We offer comprehensive support including onboarding, training, and ongoing technical assistance. Our Gwowth and Enterprise plans include priority support and dedicated account managers to ensure you get the most out of our platform.",
   },
 ];
+export const demoBenifits = [
+  "See key features in action",
+  "Get your questions answered by an expert",
+  "Explore how EduZenix can be tailored to your needs",
+];

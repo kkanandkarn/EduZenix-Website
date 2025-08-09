@@ -1,16 +1,15 @@
 /* Custom scrollbar styles for content-container */
 .content-container {
     overflow: auto;
+    height: 100vh;
   }
   
   .content-container::-webkit-scrollbar {
-    width: 8px; /* Adjust the width as needed */
-
+    width: 8px; 
   }
   
   .content-container::-webkit-scrollbar-track {
-    background: #504e4e; /* Track color */
-  /*  border-radius: 8px;  Border radius for track */
+    background: #504e4e;
   }
   
   .content-container::-webkit-scrollbar-thumb {
@@ -21,10 +20,23 @@
   .content-container::-webkit-scrollbar-thumb:hover {
     background: #0284c7; /* Thumb color on hover */
   }
-  /* Block scroll on all devices */
-.no-scroll {
-  overflow: hidden !important;
-  height: 100vh;
-  position: fixed;
-  width: 100%;
+
+@media only screen and (max-width: 700px) {
+
+  .content-container::-webkit-scrollbar {
+   display: none;
+  }
+  
+  .content-container::-webkit-scrollbar-track {
+  display: none;
+  }
+  
+  .content-container::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  
+  .content-container::-webkit-scrollbar-thumb:hover {
+     display: none;
+  }
 }
+

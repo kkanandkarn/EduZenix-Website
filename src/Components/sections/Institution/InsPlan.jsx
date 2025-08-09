@@ -12,7 +12,7 @@ const InsPlan = () => {
   const [packageType, setPackageType] = useState("monthly");
 
   return (
-    <div className="bg-primary  pt-20 pb-10 md:pb-20 flex flex-col items-center justify-center px-6">
+    <div className="bg-primary  pt-20 pb-10 md:pb-20 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-4 px-4">
         <div className="flex items-center justify-center text-white font-poppins text-2xl/8 md:text-4xl lg:text-4xl font-bold text-center">
           Flexible Plans for Every Institution
@@ -40,7 +40,7 @@ const InsPlan = () => {
           Yearly
         </button>
       </div>
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-items-center">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2 items-start justify-items-center">
         {packages.map((card, index) => (
           <div
             className="bg-secondry rounded-lg gap-2 flex flex-col items-start justify-center  border border-gray-600 hover:border-sky-300 transition-all duration-300  hover:shadow-md hover:shadow-sky-400 hover:relative"

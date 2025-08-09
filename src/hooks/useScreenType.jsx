@@ -5,7 +5,7 @@ const getDeviceType = (width) => {
   if (width < 1024) return "tablet";
   return "desktop";
 };
-
+//1250 X 850 mac air
 const useScreenType = () => {
   const [screenType, setScreenType] = useState(
     getDeviceType(window.innerWidth)
