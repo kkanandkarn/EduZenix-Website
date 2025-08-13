@@ -1,34 +1,38 @@
 import React, { useState } from "react";
-import Button from "../UI/Button/Button";
-import { useDispatch } from "react-redux";
-import { setModalClose } from "../../store/modalSlice";
-import { LuCircleCheckBig, LuPresentation, LuX } from "react-icons/lu";
-import logo from "../../assets/logo.png";
-import EduzenixLabel from "../Labels/EduzenixLabel";
-import { demoBenifits } from "../../utils/constant";
-import InputBox from "../UI/InputBox/InputBox";
-import "./styles.css";
-import useScreenType from "../../hooks/UseScreenType";
-import { toast } from "react-toastify";
 
-const DemoModal = () => {
+import { useDispatch } from "react-redux";
+import { setModalClose } from "../../../store/modalSlice";
+import { LuCircleCheckBig, LuPresentation, LuX } from "react-icons/lu";
+import logo from "../../../assets/logo.png";
+import EduzenixLabel from "../../Labels/EduzenixLabel";
+import { freeTrialBenifits, MASTER_OTP } from "../../../utils/constant";
+import InputBox from "../../UI/InputBox/InputBox";
+import "../styles.css";
+import useScreenType from "../../../hooks/UseScreenType";
+import { toast } from "react-toastify";
+import Button from "../../UI/Button/Button";
+const FreeTrialModal = () => {
   const dispatch = useDispatch();
   const device = useScreenType();
   const handleClose = () => {
     dispatch(setModalClose());
   };
   const [formData, setFormData] = useState({
-    fullName: "",
     institutionName: "",
-    workEmail: "",
-    phoneNumber: "",
-    message: "",
+    pocName: "",
+    pocEmail: "",
+    pocNumber: "",
+    otp: "",
+    agreeTermsAndConditions: false,
   });
   const [errors, setErrors] = useState({
-    fullName: "",
     institutionName: "",
-    workEmail: "",
+    pocName: "",
+    pocEmail: "",
+    otp: "",
+    agreeTermsAndConditions: "",
   });
+  const [otpSent, setOtpSent] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -36,16 +40,42 @@ const DemoModal = () => {
       ...prevFormData,
       [name]: value,
     }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+  const handleChecked = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      agreeTermsAndConditions: e.target.checked,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      agreeTermsAndConditions: "",
+    }));
   };
 
   const handleSubmit = () => {
-    toast.success(
-      "Your demo request is confirmed.\nOur team will connect with you shortly.",
-      {
-        style: { whiteSpace: "pre-line" },
-      }
-    );
-    handleClose();
+    if (formData.otp === MASTER_OTP) {
+      toast.success(
+        "Your free trial request has been submitted successfully!\nOur onboarding team will contact you shortly to get you started.",
+        {
+          style: { whiteSpace: "pre-line" },
+        }
+      );
+      handleClose();
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        otp: "Invalid OTP",
+      }));
+    }
+  };
+
+  const handleSendOtp = () => {
+    setOtpSent(true);
+    toast.success("OTP Sent Successfully.");
   };
 
   return (
@@ -61,7 +91,7 @@ const DemoModal = () => {
         >
           <div
             className={`bg-secondry ${
-              device === "desktop" ? "h-[90vh]" : "h-40"
+              device === "desktop" ? "h-[90vh]" : "h-34"
             }  w-full xl:w-1/2 text-white xl:rounded-l-lg p-4 xl:p-8`}
           >
             <div
@@ -85,21 +115,21 @@ const DemoModal = () => {
               </div>
             </div>
             <div className="text-white text-sm xl:text-xl mt-4 xl:mt-10 font-bold font-poppins">
-              Get a Personalized Demo
+              Start Your 15-Days Free Trial
             </div>
             <div className="text-zinc-400 text-xs xl:text-base mt-2 font-poppins">
-              See how our platform can revolutionize your campus management.
+              Unlock the full potential of your institution with no commitment.
             </div>
             {device === "desktop" && (
               <>
-                <div className="w-full h-1/2 text-sky-600 flex items-center justify-center">
+                {/* <div className="w-full h-1/2 text-sky-600 flex items-center justify-center">
                   <div className="h-2/3">
                     {" "}
                     <LuPresentation style={{ height: "100%", width: "100%" }} />
                   </div>
-                </div>
-                <div className="mt-4">
-                  {demoBenifits.map((benifit, index) => (
+                </div> */}
+                <div className="mt-8">
+                  {freeTrialBenifits.map((benifit, index) => (
                     <div
                       key={index}
                       className="font-poppins  flex items-center justify-start gap-4"
@@ -119,10 +149,12 @@ const DemoModal = () => {
               device === "desktop" ? "h-[90vh]" : "h-[60vh]"
             }  overflow-y-scroll w-full xl:w-1/2 xl:rounded-r-lg custom-scrollbar`}
           >
-            <div className="flex items-center justify-between text-xl font-poppins py-4 px-8">
+            <div className="flex items-center justify-between text-xl font-poppins pt-4 px-8">
               {device === "desktop" && (
                 <>
-                  <h1 className="text-white py-2 font-bold">Request a Demo</h1>
+                  <h1 className="text-white py-2 font-bold font-poppins">
+                    Create Your Account
+                  </h1>
                   <button
                     className="text-white hover:bg-secondry p-2 rounded-full ease-in-out duration-300 cursor-pointer"
                     onClick={handleClose}
@@ -132,18 +164,13 @@ const DemoModal = () => {
                 </>
               )}
             </div>
+            {device === "desktop" && (
+              <p className="pb-8 px-8 text-sm font-poppins text-gray-400">
+                Just a few details to get you started on your trial.
+              </p>
+            )}
+
             <div className="px-4 xl:px-8">
-              <InputBox
-                error={errors.fullName}
-                required={true}
-                label={"Full Name"}
-                autoComplete="off"
-                value={formData.fullName}
-                name="fullName"
-                onChange={handleChange}
-                type="text"
-                placeholder="e.g. Anand Kumar Karn"
-              />
               <InputBox
                 error={errors.institutionName}
                 required={true}
@@ -156,49 +183,80 @@ const DemoModal = () => {
                 placeholder="e.g. Anand University"
               />
               <InputBox
-                error={errors.workEmail}
+                error={errors.pocName}
                 required={true}
-                label={"Work Email"}
+                label={"Point of Contact (POC) Name"}
                 autoComplete="off"
-                value={formData.workEmail}
-                name="workEmail"
+                value={formData.pocName}
+                name="pocName"
+                onChange={handleChange}
+                type="text"
+                placeholder="e.g. Anand Kumar Karn"
+              />
+              <InputBox
+                required={true}
+                label={"Point of Contact (POC) Email"}
+                autoComplete="off"
+                value={formData.pocEmail}
+                name="pocEmail"
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. anand@eduzenix.com"
               />
               <InputBox
-                label={"Phone Number (Optional)"}
+                label={"Point of Contact (POC) Number"}
                 autoComplete="off"
-                value={formData.phoneNumber}
-                name="phoneNumber"
+                value={formData.pocNumber}
+                name="pocNumber"
                 onChange={handleChange}
                 type="mobileNumber"
                 placeholder="9876543210"
               />
-
-              <InputBox
-                label={"Message (Optional)"}
-                autoComplete="off"
-                value={formData.message}
-                name="message"
-                onChange={handleChange}
-                type="textarea"
-                placeholder="Tell us about your institution's needs...."
-              />
-              <div className="flex justify-between items-center gap-8 mt-2 mb-4 xl:mt-8">
+              {otpSent && (
+                <InputBox
+                  error={errors.otp}
+                  label={"Enter OTP"}
+                  autoComplete="off"
+                  value={formData.otp}
+                  name="otp"
+                  onChange={handleChange}
+                  type="number"
+                  placeholder="Enter OTP"
+                />
+              )}
+              <div className="px-3 my-2">
+                <p className="text-sm font-poppins block mb-1 text-white ">
+                  By clicking Submit, you agree to our{" "}
+                  <a href="" className="text-sky-400 hover:underline">
+                    Terms & Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a href="" className="text-sky-400 hover:underline">
+                    Privacy Policy.
+                  </a>
+                </p>
+              </div>
+              <div className="flex justify-between items-center gap-8 mb-4 xl:mt-4">
                 <Button
                   label={"Cancel"}
                   variant="secondry"
                   onClick={handleClose}
                 />
-                <Button label={"Submit Request"} onClick={handleSubmit} />
+                {otpSent && (
+                  <Button label={"Submit Request"} onClick={handleSubmit} />
+                )}
+
+                {!otpSent && (
+                  <Button label={"Send OTP"} onClick={handleSendOtp} />
+                )}
+                {/* <Button label={"Submit Request"} onClick={handleSubmit} /> */}
               </div>
             </div>
           </div>
           {device !== "desktop" && (
             <div className="bg-secondry w-full h-20 overflow-y-scroll custom-scrollbar">
               <div className="px-2 py-1">
-                {demoBenifits.map((benifit, index) => (
+                {freeTrialBenifits.map((benifit, index) => (
                   <div
                     key={index}
                     className="font-poppins  flex items-center justify-start gap-4"
@@ -218,4 +276,4 @@ const DemoModal = () => {
   );
 };
 
-export default DemoModal;
+export default FreeTrialModal;

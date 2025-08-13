@@ -10,12 +10,15 @@ const InsHeroSection = () => {
   const handleDemoModal = () => {
     dispatch(setModalOpen({ modalName: "demo", modalData: "" }));
   };
+  const handleFreeTrailModal = () => {
+    dispatch(setModalOpen({ modalName: "freeTrial", modalData: "" }));
+  };
 
   return (
     // <div className="pt-40 pb-10 md:pb-20 flex flex-col items-center justify-center">
     <div className="relative pt-40 pb-10 md:pb-20 flex flex-col items-center justify-center overflow-hidden bg-secondry">
       {/* Background Video */}
-      <video
+      {/* <video
         autoPlay
         loop
         muted
@@ -24,7 +27,7 @@ const InsHeroSection = () => {
         className="absolute top-0 left-0 w-full h-full object-cover object-center z-0"
       >
         <source src={BgVideo} type="video/mp4" />
-      </video>
+      </video> */}
 
       <div className="flex flex-col items-center justify-center gap-4 px-4 z-10">
         <div className="flex items-center justify-center text-white font-poppins text-2xl/8 md:text-5xl md:leading-[-1] line lg:text-6xl font-bold text-center">
@@ -68,6 +71,7 @@ const InsHeroSection = () => {
               label={"Start Free Trial"}
               iconSuffix={<FaArrowRight />}
               variant="secondry"
+              onClick={handleFreeTrailModal}
             />
           </div>
         </div>

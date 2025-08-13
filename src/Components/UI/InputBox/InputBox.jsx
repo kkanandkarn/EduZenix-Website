@@ -32,7 +32,7 @@ const InputBox = ({
     }
   }, [options]);
 
-  if (type === "text" || type === "number" || type === "password") {
+  if (type === "text" || type === "password") {
     return (
       <div className="h-28 w-full px-2 flex flex-col gap-2">
         <label className="text-sm font-poppins block mb-1 text-white">
@@ -50,6 +50,39 @@ const InputBox = ({
           name={name}
           value={value}
           onChange={onChange}
+          required={required}
+          ref={ref}
+          disabled={disabled}
+        />
+        {error?.length > 0 && <p className="text-red-400 text-sm">{error}</p>}
+      </div>
+    );
+  }
+  if (type === "number") {
+    const handleNumberChange = (e) => {
+      const val = e.target.value;
+      // Allow only digits (and empty string for backspace/delete)
+      if (/^\d*$/.test(val)) {
+        onChange(e);
+      }
+    };
+    return (
+      <div className="h-28 w-full px-2 flex flex-col gap-2">
+        <label className="text-sm font-poppins block mb-1 text-white">
+          {label} {required && "*"}
+        </label>
+        <input
+          type="text"
+          placeholder={placeholder}
+          className={`w-full font-poppins px-4 py-3  border text-white ${
+            error?.length ? "border-red-400" : "border-white/20"
+          } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] ${
+            disabled ? "bg-gray-900 " : "bg-transparent"
+          }`}
+          autoFocus={autoFocus}
+          name={name}
+          value={value}
+          onChange={handleNumberChange}
           required={required}
           ref={ref}
           disabled={disabled}
@@ -85,6 +118,14 @@ const InputBox = ({
     );
   }
   if (type === "mobileNumber") {
+    const handleMobileChange = (e) => {
+      const val = e.target.value;
+      // Allow only digits (and empty string for backspace/delete)
+      if (/^\d*$/.test(val)) {
+        onChange(e);
+      }
+    };
+
     return (
       <MobileInputBox
         error={error}
@@ -92,14 +133,39 @@ const InputBox = ({
         label={label}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
-        valu={value}
+        value={value}
         name={name}
-        onChange={onChange}
+        onChange={handleMobileChange}
         type={type}
         ref={ref}
         disabled={disabled}
         placeholder={placeholder}
       />
+    );
+  }
+  if (type === "checkbox") {
+    return (
+      <div className="h-28 w-full px-2 flex flex-col gap-2">
+        <label className="text-sm font-poppins block mb-1 text-white">
+          {label} {required && "*"}
+        </label>
+        <input
+          type={type}
+          placeholder={placeholder}
+          className={`w-full font-poppins px-4 py-3  border text-white ${
+            error?.length ? "border-red-400" : "border-white/20"
+          } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] ${
+            disabled ? "bg-gray-900 " : "bg-transparent"
+          }`}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          ref={ref}
+          disabled={disabled}
+        />
+        {error?.length > 0 && <p className="text-red-400 text-sm">{error}</p>}
+      </div>
     );
   }
   if (type === "dropdown") {

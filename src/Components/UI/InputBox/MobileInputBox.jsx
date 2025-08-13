@@ -1,5 +1,7 @@
-import React from "react";
-import { IoIosArrowDown } from "react-icons/io";
+import React, { useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { countryCodes } from "../../../utils/countryCodes";
+import "./styles.css";
 
 const MobileInputBox = ({
   error,
@@ -15,6 +17,24 @@ const MobileInputBox = ({
   disabled = false,
   placeholder,
 }) => {
+  const [activeCountry, setActiveCountry] = useState({
+    countryCode: "in",
+    phoneCode: "91",
+  });
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  console.log("COUNTRY CODES: ", countryCodes);
+  const handleActiveCountryCode = (countryData) => {
+    setActiveCountry({
+      countryCode: countryData.countryCode,
+      phoneCode: countryData.phoneCode,
+    });
+    handleModal();
+  };
+
   return (
     <div className="h-28 w-full px-2 flex flex-col gap-2 relative">
       <label className="text-sm font-poppins block mb-1 text-white">
@@ -23,7 +43,7 @@ const MobileInputBox = ({
       <input
         type={type}
         placeholder={placeholder}
-        className={`w-full px-24 py-3 font-poppins  border text-white ${
+        className={`w-full px-28 py-3 font-poppins  border text-white ${
           error?.length ? "border-red-400" : "border-white/20"
         } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] ${
           disabled ? "bg-gray-900 " : "bg-transparent"
@@ -36,12 +56,37 @@ const MobileInputBox = ({
         ref={ref}
         disabled={disabled}
       />
-      <button className="absolute top-9 px-1 left-4 py-2 text-white border-r border-r-white/20 flex items-center justify-center gap-2 cursor-pointer">
-        <img src="https://flagcdn.com/16x12/in.png" alt="flag" /> <p>91</p>{" "}
-        <div>
-          <IoIosArrowDown />
-        </div>
+      <button
+        className="absolute top-9 px-1 left-4 py-2 w-24 text-white border-r border-r-white/20 flex items-center justify-center gap-2 cursor-pointer"
+        onClick={handleModal}
+      >
+        <img
+          src={`https://flagcdn.com/16x12/${activeCountry.countryCode}.png`}
+          alt="flag"
+        />{" "}
+        <p>+{activeCountry.phoneCode}</p>{" "}
+        <div>{modalOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
       </button>
+
+      {modalOpen && (
+        <div className="absolute top-20 w-28 max-h-28 overflow-y-scroll custom-scrollbar left-1 rounded-lg text-white bg-secondry flex flex-col items-start">
+          {countryCodes.map((countryData, index) => (
+            <button
+              className={` text-white py-2 ${index === 0 ? "" : "border-t"} ${
+                index === countryCodes.length - 1 ? "" : "border-b"
+              } border-gray-600 w-full hover:bg-primary bg-secondry flex items-center justify-center gap-2 cursor-pointer ease-in-out duration-300`}
+              onClick={() => handleActiveCountryCode(countryData)}
+            >
+              <img
+                src={`https://flagcdn.com/16x12/${countryData.countryCode}.png`}
+                alt="flag"
+              />{" "}
+              <p>+{countryData.phoneCode}</p>{" "}
+            </button>
+          ))}
+        </div>
+      )}
+
       {error?.length > 0 && <p className="text-red-400 text-sm">{error}</p>}
     </div>
   );

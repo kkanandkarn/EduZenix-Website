@@ -10,9 +10,10 @@ import InsFaq from "../Components/sections/Institution/InsFaq";
 import Footer from "../Components/Footer/Footer";
 import "./styles.css";
 import { useSelector } from "react-redux";
-import DemoModal from "../Components/Modals/DemoModal";
 import useScreenType from "../hooks/UseScreenType";
 import { ToastContainer } from "react-toastify";
+import DemoModal from "../Components/Modals/DemoModal/DemoModal";
+import FreeTrialModal from "../Components/Modals/FreeTrialModal/FreeTrialModal";
 
 const HomePage = () => {
   const modalData = useSelector((state) => state.modal);
@@ -39,6 +40,7 @@ const HomePage = () => {
       </div>
 
       {modalName === "demo" && <DemoModal />}
+      {modalName === "freeTrial" && <FreeTrialModal />}
     </div>
   );
 };

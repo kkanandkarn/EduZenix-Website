@@ -136,3 +136,10 @@ export const demoBenifits = [
   "Get your questions answered by an expert",
   "Explore how EduZenix can be tailored to your needs",
 ];
+export const freeTrialBenifits = [
+  "Full access to all Pro features for 15 days",
+  "Dedicated support to answer all your questions",
+  "No credit card required to start",
+  "Experience the platform with your own data",
+];
+export const MASTER_OTP = "1234";
