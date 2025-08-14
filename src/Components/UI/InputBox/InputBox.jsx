@@ -35,7 +35,7 @@ const InputBox = ({
   if (type === "text" || type === "password") {
     return (
       <div className="h-28 w-full px-2 flex flex-col gap-2">
-        <label className="text-sm font-poppins block mb-1 text-white">
+        <label className="text-sm text-left font-poppins block mb-1 text-white">
           {label} {required && "*"}
         </label>
         <input
@@ -68,7 +68,7 @@ const InputBox = ({
     };
     return (
       <div className="h-28 w-full px-2 flex flex-col gap-2">
-        <label className="text-sm font-poppins block mb-1 text-white">
+        <label className="text-sm text-left font-poppins block mb-1 text-white">
           {label} {required && "*"}
         </label>
         <input
@@ -94,7 +94,7 @@ const InputBox = ({
   if (type === "textarea") {
     return (
       <div className="h-28 w-full px-2 flex flex-col gap-2">
-        <label className="text-sm font-poppins block mb-1 text-white">
+        <label className="text-sm text-left font-poppins block mb-1 text-white">
           {label} {required && "*"}
         </label>
         <textarea
@@ -112,6 +112,7 @@ const InputBox = ({
           required={required}
           ref={ref}
           disabled={disabled}
+          rows={100}
         />
         {error?.length > 0 && <p className="text-red-400 text-sm">{error}</p>}
       </div>

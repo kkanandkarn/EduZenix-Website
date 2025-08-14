@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModalClose } from "../../../store/modalSlice";
 import { LuCircleCheckBig, LuPresentation, LuX } from "react-icons/lu";
 import logo from "../../../assets/logo.png";
@@ -11,9 +11,13 @@ import "../styles.css";
 import useScreenType from "../../../hooks/UseScreenType";
 import { toast } from "react-toastify";
 import Button from "../../UI/Button/Button";
-const FreeTrialModal = () => {
+import bgImagePortrait from "../../../assets/3d-image-portrait.png";
+import bgImageLandscape from "../../../assets/3d-image-landScape.png";
+
+const SignupModal = () => {
   const dispatch = useDispatch();
   const device = useScreenType();
+  const modalData = useSelector((state) => state.modal.modalData);
   const handleClose = () => {
     dispatch(setModalClose());
   };
@@ -59,7 +63,7 @@ const FreeTrialModal = () => {
   const handleSubmit = () => {
     if (formData.otp === MASTER_OTP) {
       toast.success(
-        "Your free trial request has been submitted successfully!\nOur onboarding team will contact you shortly to get you started.",
+        "Your sign up request has been submitted successfully!\nOur onboarding team will contact you shortly to get you started.",
         {
           style: { whiteSpace: "pre-line" },
         }
@@ -92,7 +96,14 @@ const FreeTrialModal = () => {
           <div
             className={`bg-secondry ${
               device === "desktop" ? "h-[90vh]" : "h-34"
-            }  w-full xl:w-1/2 text-white xl:rounded-l-lg p-4 xl:p-8`}
+            }  w-full xl:w-1/2 text-white rounded-t-lg xl:rounded-t-none xl:rounded-l-lg p-4 xl:p-8`}
+            style={{
+              backgroundImage: `url(${
+                device === "desktop" ? bgImagePortrait : bgImageLandscape
+              })`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
             <div
               className={`flex items-center ${
@@ -100,13 +111,23 @@ const FreeTrialModal = () => {
               }`}
             >
               <div className="flex items-center justify-start gap-4">
-                <img src={logo} alt="logo" className="w-8 h-8" />
-                <EduzenixLabel />
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="w-8 h-8 xl:h-12 xl:w-12"
+                />
+                {/* <EduzenixLabel /> */}
+                <h1
+                  className="font-bold font-poppins text-4xl flex justify-center items-center 
+    bg-gradient-to-r from-[#56d2db] to-[#241795] bg-clip-text text-transparent"
+                >
+                  EduZenix
+                </h1>
               </div>
               <div>
                 {device !== "desktop" && (
                   <button
-                    className="text-white hover:bg-secondry p-2 rounded-full ease-in-out duration-300 cursor-pointer"
+                    className="text-sky-600 font-bold p-2 text-2xl rounded-full ease-in-out duration-300 cursor-pointer"
                     onClick={handleClose}
                   >
                     <LuX />
@@ -114,39 +135,13 @@ const FreeTrialModal = () => {
                 )}
               </div>
             </div>
-            <div className="text-white text-sm xl:text-xl mt-4 xl:mt-10 font-bold font-poppins">
-              Start Your 15-Days Free Trial
+            <div className="text-white  xl:text-sky-500 text-sm xl:text-xl mt-2 font-bold font-poppins">
+              Start Your {modalData.packageName} Package
             </div>
-            <div className="text-zinc-400 text-xs xl:text-base mt-2 font-poppins">
-              Unlock the full potential of your institution with no commitment.
-            </div>
-            {device === "desktop" && (
-              <>
-                {/* <div className="w-full h-1/2 text-sky-600 flex items-center justify-center">
-                  <div className="h-2/3">
-                    {" "}
-                    <LuPresentation style={{ height: "100%", width: "100%" }} />
-                  </div>
-                </div> */}
-                <div className="mt-8">
-                  {freeTrialBenifits.map((benifit, index) => (
-                    <div
-                      key={index}
-                      className="font-poppins  flex items-center justify-start gap-4"
-                    >
-                      <div className="text-green-600 text-xl">
-                        <LuCircleCheckBig />
-                      </div>
-                      <p className="text-white py-1"> {benifit}</p>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
           </div>
           <div
             className={`bg-primary ${
-              device === "desktop" ? "h-[90vh]" : "h-[60vh]"
+              device === "desktop" ? "h-[90vh]" : "h-[70vh]"
             }  overflow-y-scroll w-full xl:w-1/2 xl:rounded-r-lg custom-scrollbar`}
           >
             <div className="flex items-center justify-between text-xl font-poppins pt-4 px-8">
@@ -166,7 +161,7 @@ const FreeTrialModal = () => {
             </div>
             {device === "desktop" && (
               <p className="pb-8 px-8 text-sm font-poppins text-gray-400">
-                Just a few details to get you started on your trial.
+                Just a few details to get you started.
               </p>
             )}
 
@@ -251,27 +246,10 @@ const FreeTrialModal = () => {
               </div>
             </div>
           </div>
-          {device !== "desktop" && (
-            <div className="bg-secondry w-full h-20 overflow-y-scroll custom-scrollbar">
-              <div className="px-2 py-1">
-                {freeTrialBenifits.map((benifit, index) => (
-                  <div
-                    key={index}
-                    className="font-poppins  flex items-center justify-start gap-4"
-                  >
-                    <div className="text-green-600 text-base">
-                      <LuCircleCheckBig />
-                    </div>
-                    <p className="text-white py-1 text-xs"> {benifit}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default FreeTrialModal;
+export default SignupModal;

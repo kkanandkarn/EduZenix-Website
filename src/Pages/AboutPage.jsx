@@ -15,8 +15,10 @@ import { ToastContainer } from "react-toastify";
 import DemoModal from "../Components/Modals/DemoModal/DemoModal";
 import FreeTrialModal from "../Components/Modals/FreeTrialModal/FreeTrialModal";
 import SignupModal from "../Components/Modals/SignupModal/SignupModal";
+import AboutHero from "../Components/sections/About/AboutHero";
+import Leadership from "../Components/sections/About/Leadership";
 
-const HomePage = () => {
+const AboutPage = () => {
   const modalData = useSelector((state) => state.modal);
   const [modalName, setModalName] = useState("");
   const device = useScreenType();
@@ -30,21 +32,12 @@ const HomePage = () => {
       <ToastContainer position="top-center" autoClose={3000} />
       <div ref={containerRef} className={`content-container`}>
         <NavBar scrollContainerRef={containerRef} />
-        <InsHeroSection />
-        <InsPartner />
-        <InsFeature />
-        <InsAdvantage />
-        <InsPlan />
-        <InsTestimonials />
-        <InsFaq />
+        <AboutHero />
+        <Leadership />
         <Footer />
       </div>
-
-      {modalName === "demo" && <DemoModal />}
-      {modalName === "freeTrial" && <FreeTrialModal />}
-      {modalName === "signup" && <SignupModal />}
     </div>
   );
 };
 
-export default HomePage;
+export default AboutPage;

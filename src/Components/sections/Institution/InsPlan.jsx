@@ -5,11 +5,26 @@ import { FaArrowRight } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import useScreenType from "../../../hooks/UseScreenType";
 import { packages } from "../../../utils/constant";
+import { useDispatch } from "react-redux";
+import { setModalOpen } from "../../../store/modalSlice";
 
 const InsPlan = () => {
   const [active, setActive] = useState("");
   const screenType = useScreenType();
   const [packageType, setPackageType] = useState("monthly");
+  const dispatch = useDispatch();
+  const handleSignUpModal = (packageId, packageName) => {
+    dispatch(
+      setModalOpen({
+        modalName: "signup",
+        modalData: {
+          packageId: packageId,
+          packageType: packageType,
+          packageName: packageName,
+        },
+      })
+    );
+  };
 
   return (
     <div className="bg-primary  pt-20 pb-10 md:pb-20 flex flex-col items-center justify-center">
@@ -79,7 +94,7 @@ const InsPlan = () => {
               </div>
               <div className="mt-4 flex items-center justify-start w-full">
                 <Button
-                  label={"Purchase Now"}
+                  label={"Start Now"}
                   variant={`${
                     screenType === "mobile" || screenType === "tablet"
                       ? "primary"
@@ -89,6 +104,9 @@ const InsPlan = () => {
                   }`}
                   additionalClass={"w-full"}
                   iconSuffix={<FaArrowRight />}
+                  onClick={() =>
+                    handleSignUpModal(card.packageId, card.packageName)
+                  }
                 />
               </div>
             </div>

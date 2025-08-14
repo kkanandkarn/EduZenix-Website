@@ -28,7 +28,7 @@ const NavBar = ({ scrollContainerRef }) => {
   }, [scrollContainerRef]);
 
   useEffect(() => {
-    setActiveTab(currentPath === "/" ? "institution" : "student");
+    setActiveTab(currentPath.includes("student") ? "student" : "institution");
   }, [currentPath]);
 
   return (

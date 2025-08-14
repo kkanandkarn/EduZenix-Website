@@ -2,10 +2,18 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import StudentPage from "./Pages/StudentPage";
+import AboutPage from "./Pages/AboutPage";
+import ContactPage from "./Pages/ContactPage";
+import TermsOfService from "./Pages/TermsOfService";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
 
 function App() {
   const routes = [
     { path: "/", element: <HomePage /> },
+    { path: "/about", element: <AboutPage /> },
+    { path: "/contact", element: <ContactPage /> },
+    { path: "/terms", element: <TermsOfService /> },
+    { path: "/privacy", element: <PrivacyPolicy /> },
     { path: "/student", element: <StudentPage /> },
   ];
 

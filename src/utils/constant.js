@@ -20,6 +20,7 @@ const features = [
 ];
 export const packages = [
   {
+    packageId: 2,
     packageName: "Startup",
     packagePrice: "₹ 3999",
     monthlyPackagePrice: "₹ 10,000",
@@ -33,6 +34,7 @@ export const packages = [
       "Dedicated email and contact support (Response time upto 24- 48 hours)",
   },
   {
+    packageId: 3,
     packageName: "Growth",
     packagePrice: "₹ 6999",
     monthlyPackagePrice: "₹ 25,000",
@@ -51,6 +53,7 @@ export const packages = [
       "Dedicated email and contact support (Response time upto 12 hours)",
   },
   {
+    packageId: 4,
     packageName: "Enterprise",
     monthlyPackagePrice: "₹ 50,000",
     yearlyDiscountedPrice: "₹ 4,00,000",

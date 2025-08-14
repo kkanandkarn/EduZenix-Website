@@ -4,21 +4,33 @@ import { FaArrowRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { setModalOpen } from "../../../store/modalSlice";
 import BgVideo from "../../../assets/bg-video.mp4";
+import bgImagePortrait from "../../../assets/3d-image-portrait.png";
+import bgImageLandscape from "../../../assets/3d-image-landScape.png";
+import useScreenType from "../../../hooks/UseScreenType";
 
 const InsHeroSection = () => {
+  const device = useScreenType();
   const dispatch = useDispatch();
   const handleDemoModal = () => {
     dispatch(setModalOpen({ modalName: "demo", modalData: "" }));
   };
   const handleFreeTrailModal = () => {
-    dispatch(setModalOpen({ modalName: "freeTrial", modalData: "" }));
+    dispatch(
+      setModalOpen({
+        modalName: "freeTrial",
+        modalData: {
+          packageId: 1,
+          packageName: "15 Days Free Trial",
+        },
+      })
+    );
   };
 
   return (
     // <div className="pt-40 pb-10 md:pb-20 flex flex-col items-center justify-center">
     <div className="relative pt-40 pb-10 md:pb-20 flex flex-col items-center justify-center overflow-hidden bg-secondry">
       {/* Background Video */}
-      {/* <video
+      <video
         autoPlay
         loop
         muted
@@ -27,7 +39,7 @@ const InsHeroSection = () => {
         className="absolute top-0 left-0 w-full h-full object-cover object-center z-0"
       >
         <source src={BgVideo} type="video/mp4" />
-      </video> */}
+      </video>
 
       <div className="flex flex-col items-center justify-center gap-4 px-4 z-10">
         <div className="flex items-center justify-center text-white font-poppins text-2xl/8 md:text-5xl md:leading-[-1] line lg:text-6xl font-bold text-center">

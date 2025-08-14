@@ -1,8 +1,11 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import { LuFacebook, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu";
+import { FaXTwitter } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
   return (
     <div className="bg-secondry border-t border-t-zinc-700 px-6">
@@ -14,22 +17,34 @@ const Footer = () => {
           </h1>
         </div>
         <div className="flex flex-wrap justify-center items-center gap-6 text-gray-300 text-sm font-poppins">
-          <button className="cursor-pointer hover:text-sky-400 ease-in-out duration-300">
+          <button
+            className="cursor-pointer hover:text-sky-400 ease-in-out duration-300"
+            onClick={() => navigate("/about")}
+          >
             About Us
           </button>
-          <button className="cursor-pointer hover:text-sky-400  ease-in-out duration-300">
+          <button
+            className="cursor-pointer hover:text-sky-400  ease-in-out duration-300"
+            onClick={() => navigate("/contact")}
+          >
             Contact
           </button>
-          <button className="cursor-pointer hover:text-sky-400  ease-in-out duration-300">
+          <button
+            className="cursor-pointer hover:text-sky-400  ease-in-out duration-300"
+            onClick={() => navigate("/terms")}
+          >
             Terms of Service
           </button>
-          <button className="cursor-pointer hover:text-sky-400  ease-in-out duration-300">
+          <button
+            className="cursor-pointer hover:text-sky-400  ease-in-out duration-300"
+            onClick={() => navigate("/privacy")}
+          >
             Privacy Policy
           </button>
         </div>
         <div className="flex justify-center items-center gap-6 text-gray-300 text-lg">
           <button className="p-2 rounded-full cursor-pointer hover:bg-zinc-600 ease-in-out duration-300">
-            <LuTwitter />
+            <FaXTwitter />
           </button>
           <button className="p-2 rounded-full cursor-pointer hover:bg-zinc-600 ease-in-out duration-300">
             <LuLinkedin />
