@@ -8,9 +8,10 @@ import EduzenixLabel from "../../Labels/EduzenixLabel";
 import { demoBenifits } from "../../../utils/constant";
 import InputBox from "../../UI/InputBox/InputBox";
 import "../styles.css";
-import useScreenType from "../../../hooks/UseScreenType";
+
 import { toast } from "react-toastify";
 import Button from "../../UI/Button/Button";
+import useScreenType from "../../../hooks/useScreenType";
 
 const DemoModal = () => {
   const dispatch = useDispatch();

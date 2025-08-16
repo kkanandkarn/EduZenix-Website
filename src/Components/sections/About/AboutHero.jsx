@@ -6,7 +6,7 @@ import { setModalOpen } from "../../../store/modalSlice";
 import BgVideo from "../../../assets/bg-video.mp4";
 import bgImagePortrait from "../../../assets/3d-image-portrait.png";
 import bgImageLandscape from "../../../assets/3d-image-landScape.png";
-import useScreenType from "../../../hooks/UseScreenType";
+import useScreenType from "../../../hooks/useScreenType";
 import { LuTarget, LuEye, LuBookOpen } from "react-icons/lu";
 
 const AboutHero = () => {

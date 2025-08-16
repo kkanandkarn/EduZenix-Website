@@ -4,7 +4,7 @@ import Button from "../UI/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LuBuilding } from "react-icons/lu";
 import { TbUsers } from "react-icons/tb";
-import useScreenType from "../../hooks/UseScreenType";
+import useScreenType from "../../hooks/useScreenType";
 import { useSelector } from "react-redux";
 
 const NavBar = ({ scrollContainerRef }) => {

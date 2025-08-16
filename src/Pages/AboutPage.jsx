@@ -10,7 +10,7 @@ import InsFaq from "../Components/sections/Institution/InsFaq";
 import Footer from "../Components/Footer/Footer";
 import "./styles.css";
 import { useSelector } from "react-redux";
-import useScreenType from "../hooks/UseScreenType";
+import useScreenType from "../hooks/useScreenType";
 import { ToastContainer } from "react-toastify";
 import DemoModal from "../Components/Modals/DemoModal/DemoModal";
 import FreeTrialModal from "../Components/Modals/FreeTrialModal/FreeTrialModal";

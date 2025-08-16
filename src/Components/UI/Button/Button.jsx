@@ -1,5 +1,5 @@
 import React from "react";
-import useScreenType from "../../../hooks/UseScreenType";
+import useScreenType from "../../../hooks/useScreenType";
 
 const Button = ({
   variant = "primary",

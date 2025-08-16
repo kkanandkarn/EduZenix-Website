@@ -3,7 +3,7 @@ import { LuCheck } from "react-icons/lu";
 import Button from "../../UI/Button/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
-import useScreenType from "../../../hooks/UseScreenType";
+import useScreenType from "../../../hooks/useScreenType";
 import { packages } from "../../../utils/constant";
 import { useDispatch } from "react-redux";
 import { setModalOpen } from "../../../store/modalSlice";

@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "../Components/NavBar/NavBar";
 import Footer from "../Components/Footer/Footer";
 import { useSelector } from "react-redux";
-import useScreenType from "../hooks/UseScreenType";
+import useScreenType from "../hooks/useScreenType";
 import ContactHero from "../Components/sections/Conact/ContactHero";
 import ContactDetails from "../Components/sections/Conact/ContactDetails";
 
