@@ -10,7 +10,6 @@ import InsFaq from "../Components/sections/Institution/InsFaq";
 import Footer from "../Components/Footer/Footer";
 import "./styles.css";
 import { useSelector } from "react-redux";
-import useScreenType from "../hooks/UseScreenType";
 import { ToastContainer } from "react-toastify";
 import DemoModal from "../Components/Modals/DemoModal/DemoModal";
 import FreeTrialModal from "../Components/Modals/FreeTrialModal/FreeTrialModal";
@@ -19,7 +18,6 @@ import SignupModal from "../Components/Modals/SignupModal/SignupModal";
 const HomePage = () => {
   const modalData = useSelector((state) => state.modal);
   const [modalName, setModalName] = useState("");
-  const device = useScreenType();
   const containerRef = useRef(null);
   useEffect(() => {
     setModalName(modalData.modalName);

@@ -1,5 +1,3 @@
-import React from "react";
-
 const EduzenixLabel = () => {
   return (
     <h1

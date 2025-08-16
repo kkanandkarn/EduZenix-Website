@@ -1,6 +1,5 @@
-import React from "react";
 import logo from "../../assets/logo.png";
-import { LuFacebook, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu";
+import { LuFacebook, LuInstagram, LuLinkedin } from "react-icons/lu";
 import { FaXTwitter } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
