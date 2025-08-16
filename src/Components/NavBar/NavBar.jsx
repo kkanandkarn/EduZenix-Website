@@ -67,7 +67,7 @@ const NavBar = ({ scrollContainerRef }) => {
               className={`${
                 activeTab === "student" ? "bg-primary" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full hover:bg-primary cursor-pointer`}
-              // onClick={() => navigate("/student")}
+              onClick={() => navigate("/student")}
             >
               <TbUsers /> For Students
             </button>
@@ -91,7 +91,7 @@ const NavBar = ({ scrollContainerRef }) => {
               className={`${
                 activeTab === "student" ? "bg-primary" : "bg-secondry"
               } px-4 py-1 flex items-center justify-center gap-2 rounded-full cursor-pointer text-sm`}
-              // onClick={() => navigate("/student")}
+              onClick={() => navigate("/student")}
             >
               <TbUsers /> For Students
             </button>
