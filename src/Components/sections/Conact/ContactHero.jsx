@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setModalOpen } from "../../../store/modalSlice";
 import BgVideo from "../../../assets/bg-video.mp4";
 import bgImagePortrait from "../../../assets/3d-image-portrait.png";
-import bgImageLandscape from "../../../assets/3d-image-landScape.png";
+import bgImageLandscape from "../../../assets/3d-image-landscape.png";
 import useScreenType from "../../../hooks/useScreenType";
 import { LuTarget, LuEye, LuBookOpen, LuSend } from "react-icons/lu";
 import InputBox from "../../UI/InputBox/InputBox";

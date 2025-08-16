@@ -12,7 +12,7 @@ import useScreenType from "../../../hooks/useScreenType";
 import { toast } from "react-toastify";
 import Button from "../../UI/Button/Button";
 import bgImagePortrait from "../../../assets/3d-image-portrait.png";
-import bgImageLandscape from "../../../assets/3d-image-landScape.png";
+import bgImageLandscape from "../../../assets/3d-image-landscape.png";
 
 const SignupModal = () => {
   const dispatch = useDispatch();
