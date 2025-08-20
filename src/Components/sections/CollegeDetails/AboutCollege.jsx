@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 import { masterInsitutions } from "../../../utils/constant";
 import { useParams } from "react-router-dom";
 import { LuEye, LuTarget } from "react-icons/lu";
+import { useSelector } from "react-redux";
 
-const AboutCollege = () => {
-  const [college, setCollege] = useState(null);
-
-  const { institutionId } = useParams();
-
-  useEffect(() => {
-    setCollege(masterInsitutions.find((ins) => ins.id === institutionId));
-  }, [institutionId]);
+const AboutCollege = ({ college }) => {
   return (
-    <div className="bg-secondry min-h-40 w-full rounded-lg  px-4 ">
+    <div className="bg-secondry min-h-40 w-full rounded-lg  px-4 py-2">
       {college?.AboutCollege ? (
         <div className="py-4 px-4">
           <div className="">

@@ -176,7 +176,7 @@ export const masterInsitutions = [
     location: "Madhubani, Bihar",
     slug: "sandip-university",
     rating: "2.0",
-    reviews: "1.7K",
+    totalreviews: "1.7K",
     AboutCollege: {
       about:
         "Sandip University is a premier educational institution located in the heart of Bihar. We are dedicated to providing a world-class education and fostering an environment of innovation and research. Our sprawling campus provides a vibrant and enriching experience for all students.",
@@ -185,6 +185,158 @@ export const masterInsitutions = [
       mission:
         "To provide a dynamic and challenging learning environment, foster research and innovation, and create a community of scholars who are committed to making a difference in the world.",
     },
+    courses: [
+      {
+        programme: "B.Tech",
+        courses: [
+          {
+            name: "Computer Science and Engineering",
+            fees: "₹1,75,000 (1st Yr Fees)",
+          },
+          {
+            name: "Electrical Engineering",
+            fees: "₹90,000 (1st Yr Fees)",
+          },
+          {
+            name: "Civil Engineering",
+            fees: "₹85,000 (1st Yr Fees)",
+          },
+
+          {
+            name: "Mechanical Engineering",
+            fees: "₹85,000 (1st Yr Fees)",
+          },
+        ],
+        eligibility: "10+2 with 45% + SUJEE",
+      },
+      {
+        programme: "MBA",
+        courses: [
+          {
+            name: "Banking, Insurance & Financial Services",
+            fees: "₹2,70,000 (1st Yr Fees)",
+          },
+          {
+            name: "Financial Management",
+            fees: "₹1,30,000 (1st Yr Fees)",
+          },
+          {
+            name: "Human Resource Management",
+            fees: "₹1,30,000 (1st Yr Fees)",
+          },
+          {
+            name: "Marketing Management",
+            fees: "₹90,000 (1st Yr Fees)",
+          },
+        ],
+        eligibility: "Graduation with 55% + CAT/XAT",
+      },
+    ],
+    reviews: [
+      {
+        name: "Tanya",
+        collegeHistory: "B.Tech. in Mechanical Engineering - Batch of 2026",
+        timeStamps: "10 Aug 2025",
+        rating: "2.8",
+        review:
+          "Only 15% of students are placed in my college. The highest package is 8.4 LPA, the lowest is 2.4 LPA, and the average is 4 LPA. Top recruiting companies are Mahindra and Tata Motors. Only 20% of students got internships.",
+      },
+      {
+        name: "Rohit",
+        collegeHistory: "B.Sc. in Computer Science - Batch of 2024",
+        timeStamps: "05 Jul 2025",
+        rating: "4.2",
+        review:
+          "Around 80% of students got placed in my batch. The highest package is 14 LPA, average is 6 LPA. Companies like Infosys, Wipro, and TCS visited our campus. Internship opportunities are also good with stipend ranging from 10k-20k.",
+      },
+      {
+        name: "Sneha",
+        collegeHistory: "MBA in Finance - Batch of 2025",
+        timeStamps: "18 Aug 2025",
+        rating: "3.5",
+        review:
+          "About 65% students secured placements. Highest salary package offered was 12 LPA and the average package was 5.5 LPA. Top recruiters include Deloitte, KPMG, and ICICI Bank. Internships are provided to almost every student in the second year.",
+      },
+      {
+        name: "Arjun",
+        collegeHistory: "B.Tech. in Civil Engineering - Batch of 2023",
+        timeStamps: "02 Jun 2025",
+        rating: "2.0",
+        review:
+          "Placement scenario for Civil branch is very poor. Hardly 10% students got placed, mostly through off-campus drives. Highest salary package is around 5 LPA. College needs to improve industry connections.",
+      },
+      {
+        name: "Priya",
+        collegeHistory: "B.Com (Hons) - Batch of 2024",
+        timeStamps: "12 Aug 2025",
+        rating: "4.0",
+        review:
+          "Nearly 70% of students are placed. Highest package offered is 9 LPA, average package is around 4.5 LPA. Companies like EY, Deloitte, and HDFC Bank came for placements. Internship support is also very good.",
+      },
+      {
+        name: "Karan",
+        collegeHistory: "M.Tech. in Data Science - Batch of 2025",
+        timeStamps: "15 Aug 2025",
+        rating: "4.6",
+        review:
+          "Almost all students got placed with good offers. Highest package was 22 LPA and average was 10 LPA. Companies like Microsoft, Amazon, and Accenture visited. Internship opportunities are excellent with exposure to real projects.",
+      },
+    ],
+    placements: {
+      highestPackage: "₹25 LPA",
+      averagePackage: "₹8 LPA",
+      topRecruiters: ["Google", "Microsoft", "Amazon", "Infosys", "TCS"],
+    },
+    faculty: [
+      {
+        name: "Dr. Manohar Kumar",
+        designation: "Professor",
+        image: "https://randomuser.me/api/portraits/men/10.jpg",
+        department: "Department of Engineering and Technology",
+        highestQualification: "Ph.D. in Electrical and Telecommunication",
+      },
+      {
+        name: "Dr. Harita Bangali",
+        designation: "Associate Professor",
+        image: "https://randomuser.me/api/portraits/women/12.jpg",
+        department: "Department of Computer Science",
+        highestQualification: "Ph.D. in Artificial Intelligence",
+      },
+      {
+        name: "Dr. Arvind Kumar",
+        designation: "Assistant Professor",
+        image: "https://randomuser.me/api/portraits/men/32.jpg",
+        department: "Department of Mechanical Engineering",
+        highestQualification: "Ph.D. in Robotics",
+      },
+      {
+        name: "Dr. Shreya Nair",
+        designation: "Lecturer",
+        image: "https://randomuser.me/api/portraits/women/44.jpg",
+        department: "Department of Civil Engineering",
+        highestQualification: "M.Tech in Structural Engineering",
+      },
+      {
+        name: "Dr. Rohan Mehta",
+        designation: "Professor",
+        image: "https://randomuser.me/api/portraits/men/55.jpg",
+        department: "Department of Information Technology",
+        highestQualification: "Ph.D. in Data Science",
+      },
+      {
+        name: "Dr. Priya Sharma",
+        designation: "Associate Professor",
+        image: "https://randomuser.me/api/portraits/women/66.jpg",
+        department: "Department of Biotechnology",
+        highestQualification: "Ph.D. in Molecular Biology",
+      },
+    ],
+    gallery: [
+      "https://images.pexels.com/photos/2305098/pexels-photo-2305098.jpeg",
+      "https://images.pexels.com/photos/383813/pexels-photo-383813.jpeg",
+      "https://images.pexels.com/photos/798721/pexels-photo-798721.jpeg",
+      "https://images.pexels.com/photos/7972350/pexels-photo-7972350.jpeg",
+    ],
   },
   {
     id: "8d9a48b7-7d4b-45c3-bc9a-2b5a58e69b19",
