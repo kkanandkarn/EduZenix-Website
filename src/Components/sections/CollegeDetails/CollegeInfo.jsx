@@ -5,25 +5,59 @@ import { LuMapPin } from "react-icons/lu";
 import { IoStar } from "react-icons/io5";
 import AboutCollege from "./AboutCollege";
 import Courses from "./Courses";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Review from "./Review";
 import Placement from "./Placement";
 import Faculty from "./Faculty";
 import Gallery from "./Gallery";
 import ImageModal from "../../Modals/ImageModal/ImageModal";
 import QandA from "./QandA";
+import { useSearchParams } from "react-router-dom";
+import { setModalOpen } from "../../../store/modalSlice";
 
 const CollegeInfo = () => {
   const college = useSelector((state) => state.college.collegeDetails);
-  const [activeTab, setActiveTab] = useState("info");
+  const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modal);
   const [modalName, setModalName] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeImage, setActiveImage] = useState(null);
 
   useEffect(() => {
     setModalName(modalData.modalName);
   }, [modalData]);
 
-  // Render nothing or loader if college data is not ready
+  const defaultTab = "info";
+  const [activeTab, setActiveTab] = useState(
+    searchParams.get("tab") || defaultTab
+  );
+
+  useEffect(() => {
+    const tabFromQuery = searchParams.get("tab");
+    if (tabFromQuery) {
+      setActiveTab(tabFromQuery);
+    } else {
+      setSearchParams({ tab: "info" });
+    }
+
+    const tabImage = searchParams.get("image");
+    if (tabImage) {
+      setActiveImage(tabImage);
+      setActiveTab("gallery");
+      setSearchParams({ tab: "gallery" });
+      dispatch(
+        setModalOpen({
+          modalName: "galleryImage",
+          modalData: { images: college.gallery, activeImage: tabImage },
+        })
+      );
+    }
+  }, [searchParams]);
+
+  const handleTabChange = (value) => {
+    setActiveTab(value);
+    setSearchParams({ tab: value });
+  };
 
   const tabs = [
     {
@@ -108,7 +142,7 @@ const CollegeInfo = () => {
                   ? "text-white bg-primary rounded-lg"
                   : "text-gray-400"
               } ease-in-out duration-300 cursor-pointer px-6 py-2`}
-              onClick={() => setActiveTab(tab.value)}
+              onClick={() => handleTabChange(tab.value)} // 👈 updated
             >
               {tab.label}
             </button>
@@ -116,6 +150,7 @@ const CollegeInfo = () => {
         </div>
       </div>
 
+      {/* Tab Content */}
       <div className="px-4 w-full">
         {tabs.map((tab) => (
           <div
