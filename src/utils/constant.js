@@ -21,7 +21,7 @@ const features = [
 export const packages = [
   {
     packageId: 2,
-    packageName: "Startup",
+    packageName: "Basic",
     packagePrice: "₹ 3999",
     monthlyPackagePrice: "₹ 10,000",
     yearlyDiscountedPrice: "₹ 1,00,000",
@@ -35,7 +35,7 @@ export const packages = [
   },
   {
     packageId: 3,
-    packageName: "Growth",
+    packageName: "Pro",
     packagePrice: "₹ 6999",
     monthlyPackagePrice: "₹ 25,000",
     yearlyDiscountedPrice: "₹ 2,25,000",
@@ -336,6 +336,23 @@ export const masterInsitutions = [
       "https://images.pexels.com/photos/383813/pexels-photo-383813.jpeg",
       "https://images.pexels.com/photos/798721/pexels-photo-798721.jpeg",
       "https://images.pexels.com/photos/7972350/pexels-photo-7972350.jpeg",
+    ],
+    qna: [
+      {
+        question: "What is the admission process?",
+        answer:
+          "The admission process is online through our portal. You need to fill out the application form and upload the required documents.",
+      },
+      {
+        question: "Are there any scholarships available?",
+        answer:
+          "Yes, we offer merit-based and need-based scholarships. Please check the scholarship section on our website for more details.",
+      },
+      {
+        question: "What are the hostel facilities like?",
+        answer:
+          "We have separate hostels for boys and girls with all modern amenities including Wi-Fi, laundry services, and a common room.",
+      },
     ],
   },
   {

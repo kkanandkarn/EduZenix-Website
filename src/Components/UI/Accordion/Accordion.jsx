@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-export default function Accordion({ data }) {
+export default function Accordion({ data, bg = "primary" }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const contentRefs = useRef([]);
 
@@ -24,7 +24,11 @@ export default function Accordion({ data }) {
   }, [activeIndex]);
 
   return (
-    <div className="w-full p-6 text-white bg-primary rounded-lg">
+    <div
+      className={`w-full p-6 text-white ${
+        bg === "primary" ? "bg-primary" : "bg-secondry"
+      }  rounded-lg`}
+    >
       {data.map((d, index) => (
         <div key={index} className="border-b border-gray-700 py-4 px-4">
           <button

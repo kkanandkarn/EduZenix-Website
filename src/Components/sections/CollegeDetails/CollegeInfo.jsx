@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../UI/Button/Button";
 import { toast } from "react-toastify";
 import { LuMapPin } from "react-icons/lu";
@@ -9,10 +9,19 @@ import { useSelector } from "react-redux";
 import Review from "./Review";
 import Placement from "./Placement";
 import Faculty from "./Faculty";
+import Gallery from "./Gallery";
+import ImageModal from "../../Modals/ImageModal/ImageModal";
+import QandA from "./QandA";
 
 const CollegeInfo = () => {
   const college = useSelector((state) => state.college.collegeDetails);
   const [activeTab, setActiveTab] = useState("info");
+  const modalData = useSelector((state) => state.modal);
+  const [modalName, setModalName] = useState("");
+
+  useEffect(() => {
+    setModalName(modalData.modalName);
+  }, [modalData]);
 
   // Render nothing or loader if college data is not ready
 
@@ -45,9 +54,9 @@ const CollegeInfo = () => {
     {
       value: "gallery",
       label: "Gallery",
-      component: <div>Gallery Section</div>,
+      component: <Gallery college={college} />,
     },
-    { value: "qna", label: "Q&A", component: <div>Q&A Section</div> },
+    { value: "qna", label: "Q&A", component: <QandA college={college} /> },
   ];
 
   const handleApply = () => toast.success("Applied Successfully");
@@ -117,6 +126,7 @@ const CollegeInfo = () => {
           </div>
         ))}
       </div>
+      {modalName === "galleryImage" && <ImageModal />}
     </div>
   );
 };

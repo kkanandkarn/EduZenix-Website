@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const getDeviceType = (width) => {
   if (width < 768) return "mobile";
-  if (width < 1024) return "tablet";
+  if (width <= 1024) return "tablet";
   return "desktop";
 };
 //1250 X 850 mac air
