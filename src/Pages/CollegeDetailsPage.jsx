@@ -11,10 +11,18 @@ import { collegeDetails } from "../store/collegeSlice";
 
 const CollegeDetailsPage = () => {
   const containerRef = useRef(null);
-  const { institutionId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const institutionId = searchParams.get("institutionId");
 
   useEffect(() => {
+    if (!institutionId) {
+      console.log("INSITUTION ID: ", institutionId);
+      navigate("/student");
+      return;
+    }
     const collegeData = masterInsitutions.find(
       (ins) => ins.id === institutionId
     );

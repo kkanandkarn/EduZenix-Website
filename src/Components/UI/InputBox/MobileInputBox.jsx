@@ -26,7 +26,6 @@ const MobileInputBox = ({
     setModalOpen(!modalOpen);
   };
 
-  console.log("COUNTRY CODES: ", countryCodes);
   const handleActiveCountryCode = (countryData) => {
     setActiveCountry({
       countryCode: countryData.countryCode,
@@ -43,7 +42,7 @@ const MobileInputBox = ({
       <input
         type={type}
         placeholder={placeholder}
-        className={`w-full px-28 py-3 font-poppins  border text-white ${
+        className={`w-full pl-28 pr-2 py-3 font-poppins  border text-white ${
           error?.length ? "border-red-400" : "border-white/20"
         } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] ${
           disabled ? "bg-gray-900 " : "bg-transparent"

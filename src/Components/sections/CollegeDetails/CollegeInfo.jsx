@@ -12,8 +12,9 @@ import Faculty from "./Faculty";
 import Gallery from "./Gallery";
 import ImageModal from "../../Modals/ImageModal/ImageModal";
 import QandA from "./QandA";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { setModalOpen } from "../../../store/modalSlice";
+import { FaArrowLeft } from "react-icons/fa6";
 
 const CollegeInfo = () => {
   const college = useSelector((state) => state.college.collegeDetails);
@@ -22,6 +23,7 @@ const CollegeInfo = () => {
   const [modalName, setModalName] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeImage, setActiveImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setModalName(modalData.modalName);
@@ -36,27 +38,15 @@ const CollegeInfo = () => {
     const tabFromQuery = searchParams.get("tab");
     if (tabFromQuery) {
       setActiveTab(tabFromQuery);
-    } else {
-      setSearchParams({ tab: "info" });
-    }
-
-    const tabImage = searchParams.get("image");
-    if (tabImage) {
-      setActiveImage(tabImage);
-      setActiveTab("gallery");
-      setSearchParams({ tab: "gallery" });
-      dispatch(
-        setModalOpen({
-          modalName: "galleryImage",
-          modalData: { images: college.gallery, activeImage: tabImage },
-        })
-      );
     }
   }, [searchParams]);
 
   const handleTabChange = (value) => {
     setActiveTab(value);
-    setSearchParams({ tab: value });
+
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("tab", value);
+    setSearchParams(newParams);
   };
 
   const tabs = [
@@ -93,11 +83,23 @@ const CollegeInfo = () => {
     { value: "qna", label: "Q&A", component: <QandA college={college} /> },
   ];
 
-  const handleApply = () => toast.success("Applied Successfully");
+  const handleApply = () => {
+    const institutionId = searchParams.get("institutionId");
+
+    navigate(`/student/institution/apply?institutionId=${institutionId}`);
+  };
 
   return (
-    <div className="bg-primary pt-40 xl:pt-28 pb-10 md:pb-20 flex flex-col items-center justify-center">
+    <div className="bg-primary pt-40 md:pt-24 pb-10 md:pb-20 flex flex-col items-center justify-center">
       {/* College Header */}
+      <div className="w-full flex items-center justify-start pb-4 px-4">
+        <button
+          className="text-white cursor-pointer bg-gray-700 hover:bg-gray-600 ease-in-out duration-500 p-2 flex items-center justify-center rounded-full"
+          onClick={() => navigate("/student")}
+        >
+          <FaArrowLeft />
+        </button>
+      </div>
       <div className="w-full flex-col xl:flex-row py-10 xl:px-10 bg-secondry flex items-center xl:items-center justify-between">
         <div className="flex flex-col xl:flex-row items-center gap-4">
           <div className="rounded-full border-2 border-sky-400 w-14 h-14 xl:w-24 xl:h-18 text-base xl:text-4xl font-bold font-poppins flex items-center justify-center text-sky-300 bg-primary">

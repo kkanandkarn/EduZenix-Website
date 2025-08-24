@@ -7,6 +7,7 @@ import ContactPage from "./Pages/ContactPage";
 import TermsOfService from "./Pages/TermsOfService";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import CollegeDetailsPage from "./Pages/CollegeDetailsPage";
+import ApplyInstitution from "./Pages/ApplyInstitution";
 
 function App() {
   const routes = [
@@ -17,8 +18,12 @@ function App() {
     { path: "/privacy", element: <PrivacyPolicy /> },
     { path: "/student", element: <StudentPage /> },
     {
-      path: "/student/institution/:institutionId",
+      path: "/student/institution",
       element: <CollegeDetailsPage />,
+    },
+    {
+      path: "/student/institution/apply",
+      element: <ApplyInstitution />,
     },
   ];
 
