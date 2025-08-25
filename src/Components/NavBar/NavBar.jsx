@@ -34,7 +34,7 @@ const NavBar = ({ scrollContainerRef }) => {
   return (
     <div
       className={`flex flex-col justify-center fixed top-0 xl:right-2 w-full transition-colors duration-300 ${
-        modalName === "" ? "z-50" : ""
+        modalName === "" ? "z-50" : "z-10"
       } ${
         isScrolled
           ? "bg-primary border-b border-zinc-800 shadow-lg"

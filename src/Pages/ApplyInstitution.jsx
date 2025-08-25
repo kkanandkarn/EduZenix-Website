@@ -1,12 +1,20 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Footer from "../Components/Footer/Footer";
 import { useSearchParams } from "react-router-dom";
 import ApplyForm from "./../Components/sections/Apply/ApplyForm";
 import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
+import ConfirmModal from "../Components/Modals/ConfirmModal/ConfirmModal";
 
 const ApplyInstitution = () => {
   const containerRef = useRef(null);
+  const modalData = useSelector((state) => state.modal);
+  const [modalName, setModalName] = useState("");
+
+  useEffect(() => {
+    setModalName(modalData.modalName);
+  }, [modalData]);
 
   return (
     <div className="bg-primary">
@@ -17,6 +25,7 @@ const ApplyInstitution = () => {
         <ApplyForm />
         <Footer />
       </div>
+      {modalName === "confirmDelete" && <ConfirmModal />}
     </div>
   );
 };

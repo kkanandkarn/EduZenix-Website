@@ -1,14 +1,20 @@
 import React from "react";
 import PersonalInfo from "./PersonalInfo";
 import GuardianInfo from "./GuardianInfo";
+import CourseSelection from "./CourseSelection";
+import AcademicQualifications from "./AcademicQualifications";
+import Button from "../../UI/Button/Button";
 
 const ApplyFormStep1 = ({
+  setStep,
   college,
   formData,
   handleChange,
   errors,
   setFormData,
   setErrors,
+  qualifications,
+  setQualifications,
 }) => {
   return (
     <div className="bg-secondry w-full  rounded-lg font-poppins  border border-sky-300/30 shadow-md py-4">
@@ -33,6 +39,21 @@ const ApplyFormStep1 = ({
           setFormData={setFormData}
           setErrors={setErrors}
         />
+        <CourseSelection
+          formData={formData}
+          errors={errors}
+          handleChange={handleChange}
+          setFormData={setFormData}
+          setErrors={setErrors}
+        />
+        <AcademicQualifications
+          qualifications={qualifications}
+          setQualifications={setQualifications}
+        />
+      </div>
+      <div className="pt-4 w-full flex items-center justify-center">
+        {" "}
+        <Button label={"Preview Application"} onClick={() => setStep(2)} />
       </div>
     </div>
   );

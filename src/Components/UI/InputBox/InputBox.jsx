@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import MobileInputBox from "./MobileInputBox";
 import { LuCheck, LuCheckCheck } from "react-icons/lu";
@@ -22,6 +22,7 @@ const InputBox = ({
   const [dropdownLabel, setDropdownLabel] = useState("");
   const [dropdownValue, setDropdownValue] = useState("");
   const [checked, setChecked] = useState(false);
+  const dropdownRef = useRef(null);
   const handleDropDown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -45,6 +46,19 @@ const InputBox = ({
       setDropdownLabel(findLabel ? findLabel.label : `Choose ${label}`);
     }
   }, [options]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   if (type === "text" || type === "password") {
     return (
@@ -194,7 +208,10 @@ const InputBox = ({
 
   if (type === "dropdown") {
     return (
-      <div className="h-28 w-full px-2 flex flex-col gap-2 relative">
+      <div
+        className="h-28 w-full px-2 flex flex-col gap-2 relative"
+        ref={dropdownRef}
+      >
         <label className="text-sm block mb-1 text-gray-300">
           {label} {required && "*"}
         </label>
@@ -203,7 +220,10 @@ const InputBox = ({
         <button
           className={`w-full px-4 py-3 border relative ${
             error.length ? "border-red-400" : "border-white/20"
-          } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] bg-transparent cursor-pointer flex items-center justify-between`}
+          } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] bg-transparent ${
+            disabled ? "cursor-not-allowed" : "cursor-pointer"
+          } flex items-center justify-between`}
+          disabled={disabled}
           onClick={handleDropDown}
         >
           <p className="text-gray-400 truncate">
@@ -216,12 +236,13 @@ const InputBox = ({
 
         {/* Dropdown List */}
         {dropdownOpen && (
-          <div className="absolute top-22 left-0 w-full max-h-60 overflow-y-auto rounded-lg bg-gray-700 shadow-lg z-10">
+          <div className="absolute top-22 left-0 w-full max-h-60 overflow-y-auto rounded-lg bg-gray-700 shadow-lg">
             {options.length > 0 ? (
               options.map((option, index) => (
                 <button
                   key={index}
                   className="flex justify-center items-start flex-col w-full text-left px-4 py-2 text-white hover:bg-gray-600 cursor-pointer"
+                  disabled={disabled}
                   onClick={() =>
                     handleDropdownValue(option.label, option.value)
                   }
@@ -246,6 +267,30 @@ const InputBox = ({
         )}
       </div>
     );
+  }
+  if (type === "document") {
+    <div className="h-28 w-full px-2 flex flex-col gap-2">
+      <label className="text-sm text-left font-poppins block mb-1 text-white">
+        {label} {required && "*"}
+      </label>
+      <button
+        type={type}
+        placeholder={placeholder}
+        className={`w-full font-poppins px-4 py-3  border text-white ${
+          error?.length ? "border-red-400" : "border-white/20"
+        } rounded-md text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6a5af9] ${
+          disabled ? "bg-gray-900 " : "bg-transparent"
+        }`}
+        autoFocus={autoFocus}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        ref={ref}
+        disabled={disabled}
+      />
+      {error?.length > 0 && <p className="text-red-400 text-sm">{error}</p>}
+    </div>;
   }
 };
 

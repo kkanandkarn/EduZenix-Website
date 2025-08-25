@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { masterInsitutions } from "../../../utils/constant";
 import ApplyFormStep1 from "./ApplyFormStep1";
+import ApplyFormStep2 from "./ApplyFormStep2";
 
 const ApplyForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,6 +19,9 @@ const ApplyForm = () => {
     permanentAddress: "",
     guardianName: "",
     guardianContact: "",
+    course: "",
+    department: "",
+    academicQualification: [{}],
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -28,7 +32,20 @@ const ApplyForm = () => {
     permanentAddress: "",
     guardianName: "",
     guardianContact: "",
+    course: "",
+    department: "",
   });
+  const [qualifications, setQualifications] = useState([
+    {
+      id: Date.now(),
+      name: "",
+      college: "",
+      year: "",
+      percentage: "",
+      documents: [{ id: Date.now(), name: "", file: null, error: "" }],
+      isPrimary: true,
+    },
+  ]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,12 +63,28 @@ const ApplyForm = () => {
   const steps = {
     1: (
       <ApplyFormStep1
+        setStep={setStep}
         college={college}
         errors={errors}
         formData={formData}
         handleChange={handleChange}
         setFormData={setFormData}
         setErrors={setErrors}
+        qualifications={qualifications}
+        setQualifications={setQualifications}
+      />
+    ),
+    2: (
+      <ApplyFormStep2
+        setStep={setStep}
+        college={college}
+        errors={errors}
+        formData={formData}
+        handleChange={handleChange}
+        setFormData={setFormData}
+        setErrors={setErrors}
+        qualifications={qualifications}
+        setQualifications={setQualifications}
       />
     ),
   };

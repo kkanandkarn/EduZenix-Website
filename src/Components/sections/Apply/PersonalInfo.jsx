@@ -135,7 +135,6 @@ const PersonalInfo = ({
           label={"Gender"}
           value={formData.gender}
           onChange={handleGenderChange}
-          dropdownLabel={"Choose Gender"}
           type="dropdown"
           options={genderOptions}
         />
