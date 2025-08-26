@@ -11,14 +11,18 @@ import "../styles.css";
 import useScreenType from "../../../hooks/useScreenType";
 import { toast } from "react-toastify";
 import Button from "../../UI/Button/Button";
+import { useNavigate } from "react-router-dom";
 const FreeTrialModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const device = useScreenType();
   const handleClose = () => {
     dispatch(setModalClose());
   };
   const [formData, setFormData] = useState({
     institutionName: "",
+    institutionType: "",
     pocName: "",
     pocEmail: "",
     pocNumber: "",
@@ -27,6 +31,7 @@ const FreeTrialModal = () => {
   });
   const [errors, setErrors] = useState({
     institutionName: "",
+    institutionType: "",
     pocName: "",
     pocEmail: "",
     otp: "",
@@ -45,14 +50,20 @@ const FreeTrialModal = () => {
       [name]: "",
     }));
   };
-  const handleChecked = (e) => {
+  const institutionTypeOptions = [
+    { value: "university", label: "University" },
+    { value: "college", label: "College" },
+    { value: "other", label: "Other" },
+  ];
+
+  const handleInstitutionTypeChange = (value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      agreeTermsAndConditions: e.target.checked,
+      institutionType: value,
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      agreeTermsAndConditions: "",
+      institutionType: "",
     }));
   };
 
@@ -76,6 +87,15 @@ const FreeTrialModal = () => {
   const handleSendOtp = () => {
     setOtpSent(true);
     toast.success("OTP Sent Successfully.");
+  };
+
+  const handleTerms = (termType) => {
+    if (termType === "privacy") {
+      navigate("/privacy");
+    } else {
+      navigate("/terms");
+    }
+    dispatch(setModalClose());
   };
 
   return (
@@ -183,6 +203,15 @@ const FreeTrialModal = () => {
                 placeholder="e.g. Anand University"
               />
               <InputBox
+                error={errors.institutionType}
+                required={true}
+                label={"Institution Type"}
+                value={formData.institutionType}
+                onChange={handleInstitutionTypeChange}
+                type="dropdown"
+                options={institutionTypeOptions}
+              />
+              <InputBox
                 error={errors.pocName}
                 required={true}
                 label={"Point of Contact (POC) Name"}
@@ -227,13 +256,19 @@ const FreeTrialModal = () => {
               <div className="px-3 my-2">
                 <p className="text-sm font-poppins block mb-1 text-white ">
                   By clicking Submit, you agree to our{" "}
-                  <a href="" className="text-sky-400 hover:underline">
+                  <button
+                    onClick={() => handleTerms("terms")}
+                    className="text-sky-400 hover:underline"
+                  >
                     Terms & Conditions
-                  </a>{" "}
+                  </button>{" "}
                   and{" "}
-                  <a href="" className="text-sky-400 hover:underline">
+                  <button
+                    onClick={() => handleTerms("privacy")}
+                    className="text-sky-400 hover:underline"
+                  >
                     Privacy Policy.
-                  </a>
+                  </button>
                 </p>
               </div>
               <div className="flex justify-between items-center gap-8 mb-4 xl:mt-4">

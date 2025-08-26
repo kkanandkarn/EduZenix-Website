@@ -13,9 +13,11 @@ import { toast } from "react-toastify";
 import Button from "../../UI/Button/Button";
 import bgImagePortrait from "../../../assets/3d-image-portrait.png";
 import bgImageLandscape from "../../../assets/3d-image-landscape.png";
+import { useNavigate } from "react-router-dom";
 
 const SignupModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const device = useScreenType();
   const modalData = useSelector((state) => state.modal.modalData);
   const handleClose = () => {
@@ -23,6 +25,7 @@ const SignupModal = () => {
   };
   const [formData, setFormData] = useState({
     institutionName: "",
+    institutionType: "",
     pocName: "",
     pocEmail: "",
     pocNumber: "",
@@ -31,11 +34,17 @@ const SignupModal = () => {
   });
   const [errors, setErrors] = useState({
     institutionName: "",
+    institutionType: "",
     pocName: "",
     pocEmail: "",
     otp: "",
     agreeTermsAndConditions: "",
   });
+  const institutionTypeOptions = [
+    { value: "university", label: "University" },
+    { value: "college", label: "College" },
+    { value: "other", label: "Other" },
+  ];
   const [otpSent, setOtpSent] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,6 +58,17 @@ const SignupModal = () => {
       [name]: "",
     }));
   };
+  const handleInstitutionTypeChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      institutionType: value,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      institutionType: "",
+    }));
+  };
+
   const handleChecked = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -80,6 +100,14 @@ const SignupModal = () => {
   const handleSendOtp = () => {
     setOtpSent(true);
     toast.success("OTP Sent Successfully.");
+  };
+  const handleTerms = (termType) => {
+    if (termType === "privacy") {
+      navigate("/privacy");
+    } else {
+      navigate("/terms");
+    }
+    dispatch(setModalClose());
   };
 
   return (
@@ -178,6 +206,15 @@ const SignupModal = () => {
                 placeholder="e.g. Anand University"
               />
               <InputBox
+                error={errors.institutionType}
+                required={true}
+                label={"Institution Type"}
+                value={formData.institutionType}
+                onChange={handleInstitutionTypeChange}
+                type="dropdown"
+                options={institutionTypeOptions}
+              />
+              <InputBox
                 error={errors.pocName}
                 required={true}
                 label={"Point of Contact (POC) Name"}
@@ -222,13 +259,19 @@ const SignupModal = () => {
               <div className="px-3 my-2">
                 <p className="text-sm font-poppins block mb-1 text-white ">
                   By clicking Submit, you agree to our{" "}
-                  <a href="" className="text-sky-400 hover:underline">
+                  <button
+                    onClick={() => handleTerms("terms")}
+                    className="text-sky-400 hover:underline"
+                  >
                     Terms & Conditions
-                  </a>{" "}
+                  </button>{" "}
                   and{" "}
-                  <a href="" className="text-sky-400 hover:underline">
+                  <button
+                    onClick={() => handleTerms("privacy")}
+                    className="text-sky-400 hover:underline"
+                  >
                     Privacy Policy.
-                  </a>
+                  </button>
                 </p>
               </div>
               <div className="flex justify-between items-center gap-8 mb-4 xl:mt-4">

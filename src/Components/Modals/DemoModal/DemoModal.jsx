@@ -22,21 +22,39 @@ const DemoModal = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     institutionName: "",
+    institutionType: "",
     workEmail: "",
     phoneNumber: "",
     message: "",
   });
+
   const [errors, setErrors] = useState({
     fullName: "",
     institutionName: "",
+    institutionType: "",
     workEmail: "",
   });
+  const institutionTypeOptions = [
+    { value: "university", label: "University" },
+    { value: "college", label: "College" },
+    { value: "other", label: "Other" },
+  ];
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
+    }));
+  };
+  const handleInstitutionTypeChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      institutionType: value,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      institutionType: "",
     }));
   };
 
@@ -156,6 +174,15 @@ const DemoModal = () => {
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. Anand University"
+              />
+              <InputBox
+                error={errors.institutionType}
+                required={true}
+                label={"Institution Type"}
+                value={formData.institutionType}
+                onChange={handleInstitutionTypeChange}
+                type="dropdown"
+                options={institutionTypeOptions}
               />
               <InputBox
                 error={errors.workEmail}
