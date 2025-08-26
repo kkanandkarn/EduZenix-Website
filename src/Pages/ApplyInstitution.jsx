@@ -19,11 +19,16 @@ const ApplyInstitution = () => {
   return (
     <div className="bg-primary">
       <ToastContainer position="top-center" autoClose={3000} />
-      <div ref={containerRef} className={`content-container`}>
+      <div
+        ref={containerRef}
+        className={`content-container md:relative xl:static`}
+      >
         {" "}
         <NavBar scrollContainerRef={containerRef} />
         <ApplyForm />
-        <Footer />
+        <div className="md:absolute xl:static w-full md:bottom-0 md:left-0">
+          <Footer />
+        </div>
       </div>
       {modalName === "confirmDelete" && <ConfirmModal />}
     </div>

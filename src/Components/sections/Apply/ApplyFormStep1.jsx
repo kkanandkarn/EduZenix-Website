@@ -53,7 +53,7 @@ const ApplyFormStep1 = ({
       </div>
       <div className="pt-4 w-full flex items-center justify-center">
         {" "}
-        <Button label={"Preview Application"} onClick={() => setStep(2)} />
+        <Button label={"Send OTP & Proceed"} onClick={() => setStep(2)} />
       </div>
     </div>
   );
