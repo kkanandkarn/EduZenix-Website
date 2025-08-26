@@ -19,7 +19,7 @@ const StdHeroSection = () => {
   ];
   const [institutions, setInstitutions] = useState([]);
   const handleSubmit = (institutionId) => {
-    navigate(`/student/institution/${institutionId}`);
+    navigate(`/student/institution?institutionId=${institutionId}&tab=info`);
   };
 
   useEffect(() => {
