@@ -8,6 +8,7 @@ import useScreenType from "../../hooks/useScreenType";
 import { useSelector } from "react-redux";
 
 const NavBar = ({ scrollContainerRef }) => {
+  const webAppUrl = import.meta.env.VITE_WEB_APP_URL;
   const location = useLocation();
   const navigate = useNavigate();
   const screenType = useScreenType();
@@ -30,6 +31,10 @@ const NavBar = ({ scrollContainerRef }) => {
   useEffect(() => {
     setActiveTab(currentPath.includes("student") ? "student" : "institution");
   }, [currentPath]);
+
+  const handleLogin = () => {
+    window.open(webAppUrl, "_blank");
+  };
 
   return (
     <div
@@ -74,7 +79,7 @@ const NavBar = ({ scrollContainerRef }) => {
           </div>
         )}
 
-        <Button variant="primary" label={"Login"} onClick={() => {}} />
+        <Button variant="primary" label={"Login"} onClick={handleLogin} />
       </div>
       {screenType === "mobile" && (
         <div className="pt-2 pb-4 px-2 flex justify-center items-center">
