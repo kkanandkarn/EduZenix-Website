@@ -64,57 +64,6 @@ const Leadership = () => {
             </div>
           </div>
         </div>
-
-        <div className="border mt-10 border-sky-300/30 rounded-lg bg-slate-900/80 backdrop-blur-md shadow-lg hover:shadow-sky-400/40 transition-shadow duration-300 w-full xl:w-3/4 flex flex-col md:flex-row items-center overflow-hidden">
-          {/* Image */}
-          <div className="w-full h-full md:w-1/2">
-            <img
-              src={leaderImage2}
-              alt="Shivam Kumar Verma"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Content */}
-          <div className="p-6 md:w-2/3 text-center md:text-left">
-            <h3 className="text-white text-2xl font-bold font-poppins">
-              Shivam Verma
-            </h3>
-            <p className="text-sky-400 text-sm mb-4">Co-Founder & Director</p>
-            <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-              Shivam Verma is a strategic problem-solver with extensive
-              experience in addressing diverse business challenges. Over the
-              years, he has worked closely with organizations across multiple
-              industries, helping them identify core issues and implement
-              effective, sustainable solutions. He has also worked alongside
-              leading educational institutions, helping them uncover real-world
-              challenges and design innovative, practical solutions to address
-              them.
-              <br />
-              <br />
-              With a proven ability to analyze complex situations and design
-              practical strategies, Shivam has guided businesses in improving
-              efficiency, optimizing processes, and achieving long-term growth.
-              His expertise lies in understanding unique organizational needs
-              and tailoring solutions that drive measurable impact.
-              <br />
-              <br />
-              He has collaborated with numerous companies to transform
-              challenges into opportunities, strengthen operations, and unlock
-              new avenues for long-term success.
-            </p>
-
-            {/* Links */}
-            <div className="flex gap-4 mt-5 justify-center md:justify-start">
-              <a href="" className="text-sky-400 hover:text-sky-300 text-xl">
-                <FaLinkedin />
-              </a>
-              <a href="" className="text-sky-400 hover:text-sky-300 text-xl">
-                <FaEnvelope />
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
